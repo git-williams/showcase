@@ -1,0 +1,4765 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+       <title>Shop</title>
+       <meta charset="utf-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+       <link rel="stylesheet" href="assets/css/main.css" />
+       <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+       <style>
+      p { 
+		font-family: 'Raleway', sans-serif !important;
+    color: #999 !important;
+	  }
+           .visually-hidden{
+               display:none;
+           }
+button {
+	line-height: 1;
+}
+
+/* Remove border/outline/box-shadow from the main container */
+#shop-search .inner {
+ border: none !important;
+ outline: none !important;
+ box-shadow: none !important;
+}
+
+
+/* Remove border/outline/box-shadow from the .box container */
+#shop-search .inner .box {
+ border: none !important;
+ outline: none !important;
+ box-shadow: none !important;
+}
+
+
+/* Also the flex container with inline style */
+#shop-search .inner .box .row > .col-12 > div {
+ border: none !important;
+ outline: none !important;
+ box-shadow: none !important;
+}
+
+
+/* Just in case the input itself has border or outline */
+#shop-search input {
+ border: none !important;
+ outline: none !important;
+ box-shadow: none !important;
+}
+
+
+
+
+
+
+
+/* Placeholder text color */
+#shop-search input::placeholder {
+  color: #c2c2c2 !important;
+  font-size: 1.1em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.75;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+
+/* Ensure input background is transparent and no border */
+#shop-search input {
+ background: transparent !important;
+ border: none !important;
+ outline: none !important;
+ color: #c2c2c2; /* keep input text white so it shows well on dark bg */
+}
+
+
+
+
+/* Icon buttons: filter & cart */
+#shop-search button.icon {
+ all: unset;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ width: 2.5em;
+ height: 2.5em;
+ background-color: transparent; /* no white bg, transparent */
+ color: #c2c2c2;
+ border-radius: 0.25em;
+ cursor: pointer;
+ transition: transform 0.15s ease, filter 0.15s ease;
+ margin: 0; /* reset margin */
+ flex-shrink: 0;
+}
+
+
+/* Container holding input + icons */
+#shop-search .col-12 > div {
+ display: flex;
+ align-items: center;
+ background: transparent !important;
+ border-radius: 0.375em;
+ border:none !important;
+ padding: none;
+ gap: 1em; /* consistent horizontal spacing */
+}
+           #shop-search .inner .box .row > .col-12 > div {
+ background-color: transparent !important;
+ border: solid 2px rgba(255, 255, 255, 0.125) !important;
+ box-shadow: none !important; /* if there's a shadow that looks like a border */
+ /* padding stays the same */
+ border-radius: 0.375em; /* keep your rounded corners */
+ height:50px !important;
+ padding-left: 5px !important;
+ padding-right: 5px !important;
+}
+
+
+
+/* Search icon */
+#shop-search .fa-search {
+ flex: 0 0 2.5em;
+ height: 2.5em;
+ display: flex !important;
+ align-items: center;
+ justify-content: center;
+ color: #c2c2c2 !important;
+ background: transparent !important;
+ cursor: default;
+ order: 0; /* force to left */
+ margin-left: 0; /* flush with container left padding */
+ margin-right: -30px;
+}
+
+
+/* Search input */
+#shop-search input[type="text"] {
+ flex: 1;
+ border: none;
+ background: transparent;
+ color: #c2c2c2;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ font-size: 1em;
+ font-weight: 400;
+ padding-left: 0.75em;  /* space between icon and text */
+ padding-right: 0.75em;
+}
+
+
+/* Prevent cart button from changing size and add spacing */
+.features article .add-to-cart {
+   min-width: 18em;
+   text-align: center;
+   white-space: nowrap;
+   margin-bottom: 0.75em;
+}
+
+
+
+
+      
+
+
+           .cart-button-wrapper {
+               position: relative;
+           }
+
+
+           #checkout-modal {
+ display: none;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 1000000;
+ justify-content: center;
+ align-items: center;
+ opacity: 0;
+ backdrop-filter: blur(0px);
+ -webkit-backdrop-filter: blur(0px);
+ background: rgba(0, 0, 0, 0);
+ transition:
+   backdrop-filter 0.4s ease,
+   -webkit-backdrop-filter 0.4s ease,
+   background 0.4s ease,
+   opacity 0.4s ease;
+}
+
+
+#checkout-modal.show {
+ display: flex;
+ backdrop-filter: blur(2px);
+ -webkit-backdrop-filter: blur(2px);
+ background: rgba(0, 0, 0, 0.3);
+ opacity: 1;
+}
+
+
+           #checkout-modal .modal-content {
+		background-color: #000;
+ padding: 2em 4em;
+ max-width: 90%;
+ width: 600px;
+ border-radius: 0.5em;
+ box-shadow: none;
+ z-index: 10000000;
+ transform: translateY(30px);
+ opacity: 0;
+ transition:
+   transform 0.4s ease,
+   opacity 0.4s ease;
+}
+
+
+#checkout-modal.show .modal-content {
+ transform: translateY(0);
+ opacity: 1;
+}
+
+
+
+
+           .modal-header h2 {
+               margin: 0 0 1em 0;
+           }
+
+
+           .cart-items {
+               display: flex;
+               justify-content: space-between;
+               flex-direction: column;
+               gap: 0.5em;
+               max-height: 200px;
+               overflow-y: auto;
+			   color: #ffffff;
+		font-family: Raleway, Helvetica, sans-serif;
+		font-weight: 200;
+		letter-spacing: 0.1em;
+		margin: 0 0 1em 0;
+		text-transform: uppercase;
+           }
+
+
+           .cart-row {
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+           }
+
+
+           .modal-divider {
+               margin: 1em 0;
+               border-top: 2px solid #ddd;
+           }
+
+
+           .modal-footer {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+			   font-family: Raleway, Helvetica, sans-serif;
+		font-weight: 200;
+		letter-spacing: 0.1em;
+		margin: 0 0 1em 0;
+		text-transform: uppercase;
+           }
+                       .button-small {
+                   display: inline-flex;
+                   align-items: center;
+                   justify-content: center;
+                   font-size: 1rem;
+                   line-height: 1;
+                   padding: 0.65em 1.2em;
+                   white-space: nowrap;
+                   overflow: hidden;
+                   text-overflow: ellipsis;
+                   max-width: 100%;
+                   box-sizing: border-box;
+                   height: auto;
+                   min-height: 2.5em;
+                   border-radius: 4px;
+                   }
+
+
+
+
+/* Remove-btn style (unchanged but shifted left) */
+.remove-btn {
+ all: unset;
+ cursor: pointer;
+ color: white;
+ background: none;
+ width: 2.25em;
+ height: 2.25em;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 0.25em;
+ font-size: 1.25em;
+ margin-right: 1.5em; /* increased space from content */
+ transform: scale(1);
+ transition: transform 0.15s ease;
+}
+/* Hover effect desktop only */
+@media (hover: hover) {
+ .remove-btn:hover {
+   transform: scale(1.1);
+   background: none !important;
+ }
+ .features article .add-to-cart.active:hover {
+   background-color: #9c3235 !important;
+   color: white !important;
+ }
+}
+
+
+/* Active effect for remove-btn (click/tap) */
+.remove-btn:active {
+ transform: scale(1.1);
+ background: none !important;
+}
+
+
+/* Add to cart active style */
+.add-to-cart.active {
+ background-color: #96272b;
+ color: white;
+ transition: all 0.3s ease-in-out;
+}
+
+
+/* Checkout modal responsive */
+@media (max-width: 600px) {
+ #checkout-modal .modal-content {
+   width: 95%;
+   padding: 1em;
+ }
+ .button-small {
+   font-size: 0.85rem;
+   padding: 0.55em 1em;
+ }
+}
+
+
+
+
+
+
+#shop-search button.icon.fa-filter,
+#shop-search button.icon.fa-shopping-cart,
+#shop-search button.icon.fa-filter::before,
+#shop-search button.icon.fa-shopping-cart::before {
+ color: #c2c2c2 !important;
+ fill: #c2c2c2 !important;
+ stroke: #c2c2c2 !important;
+ background-color: transparent;
+ transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+
+#shop-search button.icon.fa-filter:hover,
+#shop-search button.icon.fa-shopping-cart:hover,
+#shop-search button.icon.fa-filter:hover::before,
+#shop-search button.icon.fa-shopping-cart:hover::before {
+ transform: scale(1.05);
+ filter: brightness(0.85);
+ color: #c2c2c2 !important;
+ fill: #c2c2c2 !important;
+ stroke: #c2c2c2 !important;
+}
+
+
+#shop-search button.icon.fa-filter:active,
+#shop-search button.icon.fa-shopping-cart:active,
+#shop-search button.icon.fa-filter:active::before,
+#shop-search button.icon.fa-shopping-cart:active::before {
+ transform: scale(1.02);
+ filter: brightness(0.75);
+ color: #c2c2c2 !important;
+ fill: #c2c2c2 !important;
+ stroke: #c2c2c2 !important;
+}
+
+
+
+
+
+
+
+
+
+
+#search-dropdown {
+ position: absolute;
+ top: 100%;
+ left: 0;
+ z-index: 9999;
+ background: #0d0d0d !important;
+ width: 100%;
+ font-family: 'Raleway', sans-serif !important;
+font-weight: 200;
+ color: #c2c2c2 !important;
+ box-sizing: border-box;
+ max-height: 300px;
+font-family: 'Raleway', sans-serif;
+font-size:16px;
+ overflow-y: auto;
+ display: none; /* controlled by JS via .show */
+ transition: background 0.3s ease;
+ border-radius: 0.375em;
+}
+
+
+#search-dropdown.show {
+ display: block;
+}
+
+
+#search-dropdown .search-item {
+ padding: 0.5em 1em;
+ cursor: pointer;
+ color: #c2c2c2 !important;
+  font-size: 1.1em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.75;  font-family: "Source Sans Pro", sans-serif;
+
+}
+ #search-dropdown div.search-item:hover {
+   background: rgba(255, 255, 255, 0.05) !important;
+   transition: background 0.5s ease !important;
+ }
+ #search-dropdown div.search-item strong {
+   font-weight: bold;
+ }
+
+
+/* Apply only when >5 items using a toggle class */
+#search-dropdown.scrollable {
+ max-height: 300px; /* or whatever height fits ~5 items */
+ overflow-y: auto;
+}
+
+
+#search-dropdown {
+ max-height: 300px !important;
+ overflow-y: auto !important;
+}
+
+
+
+
+/* Highlight matched text in dropdown */
+#search-dropdown div.option strong {
+ color: #c2c2c2 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === FILTER TAG DROPDOWN === */
+#filter-dropdown {
+ position: absolute;
+ top: 110%;
+ left: 0;
+ width: 100%;
+ z-index: 9998;
+ background: #0d0d0d; /* same as search bar */
+border: none !important;
+ padding: 1em;
+ display: none;
+ box-sizing: border-box;
+ transition: opacity 0.3s ease;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+
+#filter-dropdown.show {
+ display: block;
+}
+
+
+/* Tag container layout */
+#filter-dropdown .filter-tags {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.5em;
+}
+
+
+/* Tag buttons */
+.filter-btn {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 0.4em 1em;
+ background: #0d0d0d;
+ color: white;
+ font-size: 0.85rem;
+ border-radius: 0.5em;
+ cursor: pointer;
+ transition: all 0.2s ease;
+ font-weight: 500;
+ text-align: center;
+ user-select: none;
+ white-space: nowrap;
+}
+
+
+
+
+/* Hover (desktop only) */
+@media (hover: hover) {
+ .filter-btn:hover {
+   background: rgba(255, 255, 255, 0.1);
+   background-color: rgba(255, 255, 255, 0.1);
+ }
+}
+
+
+/* Toggled on */
+.filter-btn.active {
+ background: rgba(255, 255, 255, 0.2);
+ background-color: rgba(255, 255, 255, 0.2);
+ color: white;
+}
+
+
+/* Click feedback */
+.filter-btn:active {
+ transform: scale(0.96);
+}
+
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+ #filter-dropdown {
+   padding: 0.75em;
+ }
+
+
+ .filter-btn {
+   font-size: 0.75rem;
+   padding: 0.35em 0.85em;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.badge-counter {
+ position: absolute;
+ bottom: -4px;
+ right: -4px;
+ width: 18px;
+ height: 18px;
+ font-size: 0.65rem;
+ font-weight: bold;
+ display: none;
+ align-items: center;
+ justify-content: center;
+ border-radius: 50%;
+ background-color: #0d0d0d; /* Same as search bar background */
+ color: #fff;
+ font-family: 'Raleway', sans-serif;
+ font-weight: 700;
+ pointer-events: none;
+ z-index: 5;
+}
+</style>
+   </head>
+   <body class="is-preload">
+
+
+       <!-- Page Wrapper -->
+       <div id="page-wrapper">
+
+
+           <!-- Header -->
+           <header id="header">
+               <h1><a href="generic.html">Store</a></h1>
+               <nav>
+                   <a href="#menu">Menu</a>
+               </nav>
+           </header>
+
+
+           <!-- Menu -->
+           <nav id="menu">
+               <div class="inner">
+                   <h2>Menu</h2>
+                   <ul class="links">
+                       <li><a href="index.html">Home</a></li>
+                       <li><a href="generic.html">Shop</a></li>
+                       <li><a href="elements.html">Learn More</a></li>
+                   </ul>
+                   <a href="#" class="close">Close</a>
+               </div>
+           </nav>
+
+
+           <!-- Banner -->
+           <section id="wrapper">
+               <header>
+                   <div class="inner">
+                       <h2><span class="shine-text">Elevate Your Customers' Shopping Experience</span></h2>
+                       <p>Shoppers love convenience & style. Provide them with a clean, responsive, and directional shopping experience.</p>
+                   </div>
+               </header>
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .shine-text {
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+  /*color: transparent;  start transparent */
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.2) 40%,
+    rgba(255,255,255,1) 50%,
+    rgba(255,255,255,0.2) 60%,
+    rgba(255,255,255,0) 100%
+  );
+  background-size: 200%;
+  background-repeat: no-repeat;
+  background-position: 70% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
+  animation: 
+    shineText 2s ease-in-out forwards,
+    fadeInColor 1.5s ease-out 1.5s forwards;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
+			   <div class="close-div">
+<div id="main-content" class="uppy">
+               <!-- Search Bar -->
+<section id="shop-search" class="wrapper style1">
+ <div class="inner">
+   <div class="box" style="padding: 1.5em;">
+     <div class="row gtr-uniform" style="display: flex; flex-wrap: wrap; align-items: center;">
+       <div class="col-12">
+         <div id="search-bar-container" style="display: flex; align-items: center; border-radius: 0.375em; padding: 0.5em 1em; position: relative;">
+           <label for="search" class="visually-hidden">Search</label>
+           <span class="icon solid fa-search" aria-hidden="true"></span>
+           <input type="text" name="search" id="search" placeholder="" autocomplete="off" aria-label="Search Products" />
+
+
+           <div class="filter-button-wrapper" style="position: relative;">
+ <button class="icon solid fa-filter" id="filter-toggle" aria-label="Filter Products"></button>
+ <div id="filter-badge" class="badge-counter">0</div>
+</div>
+
+
+<div class="cart-button-wrapper" style="position: relative;">
+ <button id="cart-button" class="icon solid fa-shopping-cart" aria-label="View Cart"></button>
+ <div id="cart-badge" class="badge-counter">0</div>
+</div>
+<style>
+#cart-badge.show {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+</style>
+
+
+<!-- ✅ Correct placement for filter-dropdown -->
+<div id="filter-dropdown"></div>
+
+
+       </div>
+     </div>
+   </div>
+ </div>
+</section>
+
+
+<!-- Product Section -->
+<section id="shop-products" class="wrapper">
+ <div class="inner">
+   <section class="features"></section>
+ </div>
+</section>
+
+<style>
+.features article {
+  cursor: pointer;
+  border-radius: 0.375em;
+  background: #000000;
+  padding: 0;
+  margin-bottom: 1em;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start; /* ✨ This is the key */
+  text-align: left;        /* ✨ For text inside child elements */
+  transition: background 0.5s ease;
+  padding-top: 0; /* optional: keep image flush at top */
+padding: 0;
+}
+.features article h3{
+	  margin-top: -10px; /* tighten space from image */
+  margin-bottom: 10px; /* small gap before price */
+
+}
+
+.features article:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+.features article.no-highlight {
+  background: rgb(36, 36, 36)849 !important;
+}
+
+.features article img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 0.375em;
+  border-top-right-radius: 0.375em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin: 0;
+}
+
+.features article .card-content {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 1.5em;
+  text-align: left;
+}
+
+
+.features article hr {
+  display: block;
+  width: 100%;
+  margin: 0.5em auto 1em auto; /* auto left/right centers it */
+  
+}
+
+
+.features article h3.major {
+  border-bottom: none !important;  /* remove any border line */
+  box-shadow: none !important;     /* remove any shadow underline */}
+
+.features article .price {
+  margin-top: 0.2em;  /* space below title */
+  margin-bottom: 0.2em; /* closer to hr */
+  color: #ffffff;
+		font-family: Raleway, Helvetica, sans-serif;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		margin: 0 0 1em 0;
+		text-transform: uppercase;
+}
+
+
+
+</style>
+
+<!-- Product Page Main-Content END DIV -------------------------------------------------------------------------------------------------------->
+</div>
+<!-- Checkout Modal -->
+<div id="checkout-modal">
+  <div class="modal-content">
+    <div class="mini-notification" id="checkout-success">Sorry! You can't do that. This is a fake shop.</div>
+
+    <div class="modal-header">
+      <h2>Your Products</h2>
+    </div>
+    <div class="cart-items" id="cart-items-list"></div>
+    <div class="modal-divider"></div>
+    <div class="modal-footer">
+      <button class="button-small" id="checkout-btn">Checkout</button>
+      <span><strong>Total:</strong> $<span id="cart-total">0.00</span></span>
+    </div>
+  </div>
+</div>
+
+
+<style>
+.modal-content {
+  position: relative; /* new: context for absolute positioning */
+}
+
+.mini-notification {
+  position: absolute;
+  top: -40px;  /* above modal content */
+  left: 50%;   /* center horizontally */
+  transform: translateX(-50%) translateY(20px);
+  background-color: #0d0d0d;
+  color: #fff;
+  font-family: Raleway, Helvetica, sans-serif;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+font-size: 2rem;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  width: 400px;
+  justify-content: center;
+}
+
+
+
+.mini-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 480px) {
+  .mini-notification {
+	  justify-content: center;
+
+    width: 340px;           /* smaller width */
+    font-size: 12px;        /* smaller text */
+    padding: 0.3em 0.6em;   /* less padding */
+    border-radius: 6px;     /* smaller corners */
+    top: -30px;             /* a bit closer on smaller screens */
+  }
+  .mini-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+}
+
+
+
+</style>
+
+
+
+
+
+
+
+
+<!-- Product Page -->
+<section id="product-page" style="display:none;" class="backdrop" >
+  <div class="top-bar">
+    <button class="back-btn" id="back-to-main">← Back to Shop</button>
+    <nav class="breadcrumbs">Home / Category / Product</nav>
+  </div>
+
+  <div class="product-main">
+    <div class="product-image-carousel">
+      <div class="image-container">
+        <div id="product-images" class="image-gallery"></div>
+        <button class="carousel-btn left">←</button>
+        <button class="carousel-btn right">→</button>
+        <button class="zoom-toggle"><i class="fas fa-search"></i></button>
+        <div class="zoom-box"></div>
+      </div>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <div class="product-info">
+		 <hr class="product-page-divider mobile" />
+      <h1 class="product-title" id="product-title"></h1>
+      <p class="product-price" id="product-price"></p>
+	  <div class="product-rating">
+        <div class="stars">★★★★★</div>
+        <span class="review-count">(231 Ratings)</span>
+      </div>
+      <hr class="product-page-divider desktop" />
+    </div>
+	<style>
+@media (min-width: 768px) {
+	.mobile{
+		display:none !important;
+	}
+}
+@media (max-width: 768px) {
+	.desktop{
+		display:none !important;
+	}
+	.mobile{
+		margin-top: -15px;
+		margin-bottom: 10px;
+
+	}
+}
+
+
+	</style>
+
+    <div class="purchase-details" id="receipt-sidebar">
+  <h3>Purchase Details</h3>
+  <div class="summary-title" id="summary-title">Subtotal</div>
+  <div class="summary-price" id="summary-price">$49.99</div>
+  <hr class="sidebar-divider">
+
+
+<div class="divider-sidebar">
+  	<div class="batch-controls">
+   		 	<div class="quantity-selector">
+				<button id="qty-decrease" aria-label="Decrease quantity"><span>−</span></button>
+				<span id="qty-count">1</span>
+				<button id="qty-increase" aria-label="Increase quantity"><span>＋</span></button>
+			</div>
+<style>
+ .qty-decrease {
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: inline-flex;
+  align-items: center !important;
+}
+.qty-increase{
+	  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: inline-flex;
+  align-items: center !important;
+  gap: 0.5rem;
+}
+
+
+</style>
+
+
+
+
+		<div class="shipping-dropdown">
+			<button class="shipping-trigger">Shipping Options</button>
+			<ul class="shipping-menu hidden">
+				<li data-value="0">Free Shipping</li>
+				<li data-value="5">Standard ($5)</li>
+				<li data-value="15">Express ($15)</li>
+			</ul>
+		</div>
+	</div>
+
+		<div class="batch-buttons">
+					<button class="button add-to-cart2">
+					<span class="btn-label">Add to Cart</span>
+					<span class="ghost">Remove</span></button>
+					<button class="checkout-btn2">Checkout</button>
+			</div>
+		</div>
+	</div>
+  </div>
+<div class="product-info-alt">
+  <div class="info-left">
+    <h1 id="alt-product-title">Product Name</h1>
+    <p id="alt-product-price" class="alt-product-price">$99.99</p>
+  </div>
+  <div class="info-right">
+    <div class="stars">★★★★★</div>
+    <span class="review-count">(231 Ratings)</span>
+  </div>
+</div>
+
+<style>
+  .product-info-alt {
+    display: flex;
+    align-items: flex-start; /* Align top of elements */
+    gap: 40px;
+    color: white;
+    flex-wrap: nowrap; /* Prevent line breaks */
+    white-space: nowrap;
+  }
+
+  .info-left,
+  .info-right {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #alt-product-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
+
+  .alt-product-price {
+    font-size: 16px;
+    color: white;
+    position: relative;
+    top: 4px; /* Adjust downward */
+    margin: 0;
+  }
+
+  .stars {
+    font-size: 18px;
+    color: gold;
+  }
+
+  .review-count {
+    font-size: 16px;
+    color: white;
+	position:relative;
+	top:4px;
+  }
+</style>
+
+
+
+			<div class="product-description-tabs">
+				<div class="surround">
+				<div class="tabs">
+				<button class="tab active" data-tab="description">Description</button>
+				<button class="tab" data-tab="info">Product Info</button>
+				</div>
+			<div class="tab-content" id="description"></div>
+			<div class="tab-content hidden" id="info"></div>
+			</div>
+			</div>
+
+			<!--<section id="recommended-section">
+			<h2>Frequently Bought With This Product</h2>
+			<div class="recommended-wrapper">
+				<button class="carousel-btn prev-btn">&lt;</button>
+				<div class="carousel-track"></div>
+				<button class="carousel-btn next-btn">&gt;</button>
+			</div>
+			</section>-->
+
+
+
+<!--Review Scroll-->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const reviewLink = document.querySelector(".review-count");
+  const reviewsSection = document.getElementById("reviews");
+
+  if (reviewLink && reviewsSection) {
+    reviewLink.addEventListener("click", () => {
+      reviewsSection.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+});
+</script>
+
+
+
+
+
+
+
+	<div id="reviews"></div>
+  <h3 class="review-header-text">Customer reviews</h3>
+  <div class="preview-container">
+    <div class="review-row">
+      <!-- Review 1 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="images/pfp.png" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Jane D.</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <span class="date">April 2, 2025</span>
+    </div>
+  </div>
+  <h4 class="review-title">Exceeded expectations</h4>
+  <p class="review-body">Absolutely blown away. Great experience from start to finish. Will be returning again soon. The details really stood out to me. Very happy overall.</p>
+</div>
+<!-- Review 2 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="https://i.pravatar.cc/40?img=2" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Michael B.</span>
+        <span class="stars">★★★★☆</span>
+      </div>
+      <span class="date">March 18, 2025</span>
+    </div>
+  </div>
+  <h4 class="review-title">Very solid</h4>
+  <p class="review-body">The overall experience was very good. Quality and service were both above average. Would recommend to others.</p>
+</div>
+<!-- Review 3 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="images/pfp.png" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Sara L.</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <span class="date">March 5, 2025</span>
+    </div>
+  </div>
+  <h4 class="review-title">Fantastic!</h4>
+  <p class="review-body">Couldn't be happier. Everything went smoothly and the result was even better than I had hoped. Great attention to detail.</p>
+</div>
+<!-- Review 4 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="https://i.pravatar.cc/40?img=4" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Daniel M.</span>
+        <span class="stars">★★★☆☆</span>
+      </div>
+      <span class="date">February 26, 2025</span>
+    </div>
+  </div>
+  <h4 class="review-title">Good, but could improve</h4>
+  <p class="review-body">Overall it was decent, but I had a few minor issues. Still, I appreciate the effort and the outcome was acceptable.</p>
+</div>
+</div>
+<div class="review-row">
+<!-- Review 5 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="https://i.pravatar.cc/40?img=5" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Olivia R.</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <span class="date">February 10, 2025</span>
+    </div>
+  </div>
+  <h4 class="review-title">Loved every bit</h4>
+  <p class="review-body">Really well done. Everything felt smooth and professional. I’ve already recommended this to a few friends.</p>
+</div>
+<!-- Review 6 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="https://i.pravatar.cc/40?img=6" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Chris T.</span>
+        <span class="stars">★★★★☆</span>
+      </div>
+      <span class="date">January 28, 2025</span>
+    </div>
+  </div>
+  <h4 class="review-title">This is a fake review</h4>
+  <p class="review-body">This review is totally fake. It's completely obvious, too. Look at my profile picture. There's no way I'm real.</p>
+</div>
+<!-- Review 7 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="images/pfp.png" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Nina K.</span>
+        <span class="stars">★★★★★</span>
+      </div>
+      <span class="date">January 13, 2025</span>
+    </div>
+  </div>
+  <h4 class="review-title">Exactly what I wanted</h4>
+  <p class="review-body">This was spot on. I appreciated the simplicity and the care in execution. Very impressive work.</p>
+</div>
+<!-- Review 8 -->
+<div class="review-card">
+  <div class="review-header">
+    <img src="images/pfp.png" alt="Reviewer" class="pfp">
+    <div class="review-info">
+      <div class="name-stars">
+        <span class="name">Liam W.</span>
+        <span class="stars">★★★★☆</span>
+      </div>
+      <span class="date">December 30, 2024</span>
+    </div>
+  </div>
+  <h4 class="review-title">Very pleased</h4>
+  <p class="review-body">Easy to work with and great results. It’s clear that there’s care put into the process. Would happily return.</p>
+</div>
+
+    </div>
+  </div>
+  <button class="view-all-button" onclick="openReviews()">View all reviews</button>
+
+
+<script>
+  function openReviews() {
+    document.querySelector('.close-div').style.display = 'none';
+    document.querySelector('.review-section1').style.display = 'block';
+  }
+
+</script>
+
+
+
+
+
+
+
+
+
+	<style>
+   
+
+	.name-stars {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: left;
+}
+
+    .review-header-text {
+      text-align: center;
+  font-size: 1.6rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .close-div {
+      display: block;
+    }
+
+    .preview-container {
+      max-width: 1376px;
+      margin: 0 auto;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .preview-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .review-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .review-card {
+    background: #0d0d0d; /*carcar*/
+      border-radius: 10px;
+
+      padding: 1em;
+	  color:#fff;
+	  font-family: 'Raleway', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 300px;
+      max-width: 320px;
+      flex: 1;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75em;
+	  font-size:1.2em;
+	  font-weight: 700;
+    }
+
+    .pfp {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1.5em;
+      flex-shrink: 0;
+    }
+
+    .review-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25em;
+	  font-weight: 200;
+    }
+
+    .name-stars {
+      display: flex;
+      justify-content: space-between;
+      align-items: left;
+      font-weight: 700;
+    }
+
+    .stars {
+      font-size: 0.9em;
+      color: #f5a623;
+	  align-items: left;
+    }
+
+    .date {
+      font-size: 0.8em;
+      color: #c2c2c2;
+	  font-weight: 200;
+	  align-items: left;
+    }
+
+    .review-title {
+      font-size: 1em;
+      margin: 0.5em 0;
+      font-weight: 700;
+    }
+
+    .review-body {
+      font-size: 0.9em;
+      color: #fff;
+      line-height: 1.5;
+font-weight: 200;
+    }
+
+    .view-all-button {
+      display: block;
+      padding: 0.55em 1em;
+background: rgba(255, 255, 255, 0.0125);     
+color: white;
+border: 1px solid rgba(255, 255, 255, 0.125);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8em;
+	line-height: 1;
+	  transition: all 0.5s ease-in-out;
+	  margin: 0 auto !important;
+    }
+
+
+	.view-all-button:hover {
+		background: rgba(255, 255, 255, 0.05)!important;
+	}
+    .reviews-container {
+      max-width: 1376px;
+      margin: 0 auto;
+    }
+
+    .back-button {
+      margin-bottom: 2rem;
+      padding: 0.5em 1em;
+      background-color: #ddd;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    @media (max-width: 820px) {
+  .review-row {
+    justify-content: unset !important;
+  }
+}
+
+   @media (max-width: 819px) {
+  .review-row {
+    flex-wrap: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1em;
+  }
+
+  .review-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .review-card {
+    width: 80%;
+    max-width: 300px;
+    scroll-snap-align: start;
+  }
+
+}
+
+
+
+
+
+
+
+.rec-title{
+	  font-size: 1.6rem;
+
+}
+
+</style>
+
+
+
+
+
+
+
+
+<section style="padding: 2em 1em;">
+  <h3 class= "rec-title" style="text-align: center; margin-bottom: 1.5em;">See Other Recommended Products</h3>
+
+  <!-- Notification -->
+  <div id="notification" style="
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0d0d0d;
+    color: #fff;
+    padding: 0.75em 1.25em;
+    border-radius: 8px;
+	font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    transition: top 0.4s ease;
+    z-index: 90000000000001;
+  ">Sorry! You can't do that. This is a fake shop.</div>
+
+  <!-- Product Cards Row -->
+  <div style="
+    display: flex;
+    gap: 1.25em;
+    overflow-x: auto;
+    padding-bottom: 0.5em;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  ">
+  <div class="product-row">
+   <!-- Card 1 -->
+<div class="product-card" onclick="showNotification()">
+  <div class="image">
+    <img src="images/bag1.jpg" alt="Travel Crossbody Bag" />
+  </div>
+  <div class="card-content">
+    <h3 class="major">Travel Crossbody Bag</h3>
+	<hr class="car" />
+    <p class="price">$74.50</p>
+    <hr />
+    <p class="description-pd">Everyday elegance with room for essentials.</p>
+  </div>
+</div>
+
+<!-- Card 2 -->
+<div class="product-card" onclick="showNotification()">
+  <div class="image">
+    <img src="images/tb3.jpg" alt="Bamboo Toothbrush Set" />
+  </div>
+  <div class="card-content">
+    <h3 class="major">Bamboo Toothbrush Set</h3>
+		<hr class="car" />
+
+    <p class="price">$12.95</p>
+    <hr />
+    <p class="description-pd">Sustainable choice for a cleaner smile.</p>
+  </div>
+</div>
+
+<!-- Card 3 -->
+<div class="product-card" onclick="showNotification()">
+  <div class="image">
+    <img src="images/mug1.jpg" alt="Thermal Mug" />
+  </div>
+  <div class="card-content">
+    <h3 class="major">Thermal Mug</h3>
+		<hr class="car" />
+
+    <p class="price">$21.00</p>
+    <hr />
+    <p class="description-pd">Perfect temperature control on the go.</p>
+  </div>
+</div>
+
+<!-- Card 4 -->
+<div class="product-card" onclick="showNotification()">
+  <div class="image">
+    <img src="images/diffuser1.jpg" alt="Diffuser + Oil Kit" />
+  </div>
+  <div class="card-content">
+    <h3 class="major">Diffuser + Oil Kit</h3>
+		<hr class="car" />
+
+    <p class="price">$39.99</p>
+    <hr />
+    <p class="description-pd">Breathe easy with calming aromas.</p>
+  </div>
+</div>
+
+<!-- Card 5 -->
+<div class="product-card" onclick="showNotification()">
+  <div class="image">
+    <img src="images/desk1.jpg" alt="Standing Desk Converter" />
+  </div>
+  <div class="card-content">
+    <h3 class="major">Standing Desk Converter</h3>
+		<hr class="car" />
+
+    <p class="price">$129.00</p>
+    <hr />
+    <p class="description-pd">Ergonomic design for productivity and comfort.</p>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- CSS -->
+<style>
+
+	.car{
+		border:none !important;
+	}
+  .product-card {
+    min-width: 240px;
+background: transparent;
+color:#fff;
+border:2px solid rgba(255, 255, 255, 0.125);
+	border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: background 0.5s ease;
+  }
+
+
+  .product-card:hover {
+background: rgba(255, 255, 255, 0.05);  }
+
+  .product-card .image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+
+}
+
+
+  .product-card .card-content {
+    padding: 1em;
+  }
+
+  .product-card .major {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	color: #fff;
+    font-size: 0.9em;
+    margin: 0 0 0.5em;
+	margin-bottom: -15px;
+	border:none !important;
+  }
+
+  .product-card .price {
+    margin-top: -15px !important;
+    font-weight: 600;
+font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	color: #fff;  
+font-size: 0.8em;}
+
+  .product-card .description-pd {
+    font-size: 0.9em;
+font-family: sans-serif;
+
+
+
+font-weight: 400;
+	color: #fff;  }
+
+  .product-card hr {
+    margin: 0.5em 0;
+  }
+
+  /* Optional: hide scrollbar on WebKit */
+  div[style*="overflow-x"]::-webkit-scrollbar {
+    display: none;
+  }
+
+
+
+
+.product-row {
+    display: flex;
+    flex-wrap: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1em;
+  }
+
+  .product-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-card {
+    min-width: 300px;
+    max-width: 300px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .product-card .image img {
+    height: 400px;
+  }
+
+
+@media (max-width: 640px) {
+  .product-row {
+    display: flex;
+    flex-wrap: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1em;
+  }
+
+  .product-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-card {
+    min-width: 300px;
+    max-width: 300px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .product-card .image img {
+    height: 400px;
+  }
+
+  .product-card .card-content {
+    padding: 0.75em;
+  }
+
+  .product-card .major {
+    font-size: 1em;
+  }
+
+  .product-card .description-pd {
+    font-size: 0.85em;
+  }
+}
+
+
+</style>
+
+<!-- JS -->
+<script>
+  function showNotification() {
+    const notif = document.getElementById("notification");
+    notif.style.top = "80px";
+    setTimeout(() => {
+      notif.style.top = "-200px";
+    }, 3000);
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+</div>
+
+
+<style>
+  .review-section1 {
+    max-width: 1376px;
+    margin: 0 auto;
+    background: transparent;
+    padding: 20px;
+    position: relative;
+  }
+
+  .reviews-container1 {
+    position: relative;
+  }
+
+  .review-header1 {
+    max-height: 260px;
+    min-height: 260px;
+    max-width: 55em;
+    margin: 2.7rem auto;
+    padding: 12px 18px;
+    border: 2px solid rgba(255, 255, 255, 0.125);
+	    background: #0d0d0d;
+margin-bottom:4rem;
+    border-radius: 8px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+  }
+
+  .close-button1 {
+    display: none;
+  }
+
+  .review-grid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .review-card1 {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 8px;
+    transition: transform 0.3s;
+  }
+
+  .filter-dropdown1 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -20px);
+    opacity: 0;
+    background: #0d0d0d;
+    max-width: 55em;
+    width: 100%;
+    padding: 12px 18px;
+    box-sizing: border-box;
+    border: 2px solid rgba(255, 255, 255, 0.125);
+    border-radius: 8px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .filter-dropdown1.active {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .clear-filters1 {
+    padding: 6px 12px;
+	width: 160px;
+    background: #2f3141;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  
+  .filter-button1 {
+    padding: 6px 12px;
+	width: 160px;
+    background: #2f3141;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .filter-column1 {
+    flex: 1;
+    padding: 0 10px;
+    min-width: 160px;
+  }
+
+  .filter-dropdown1 h4 {
+    margin-bottom: 10px;
+  }
+
+  .filter-option1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .filter-option1 input[type="checkbox"] {
+    margin-right: 8px;
+    appearance: checkbox;
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    opacity: 1 !important;
+    position: relative;
+  }
+
+  .filter-option1.selected {
+    background-color: #eef;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  .review-layout-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr; /* first fixed, second fills rest */
+  gap: 24px;
+}
+
+.review-highlight-box {
+  height: 100%;
+  background: transparent;
+  border-radius: 8px;
+  /* Customize this however you like */
+}
+
+
+
+
+  .rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rating-label {
+    width: 60px;
+    font-size: 14px;
+    color: #fff;
+    flex-shrink: 0;
+	font-family: 'Raleway',sans-serif;
+	font-weight: 700;
+  }
+
+  .rating-bar-outer {
+    flex: 1;
+    height: 18px;
+    background-color: rgba(255, 255, 255, 0.125);
+    border-radius: 6px;
+    overflow: hidden;
+ border:none;
+  }
+
+  .rating-bar-inner {
+    height: 100%;
+    background-color: #999; /* amber */
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .rating-percent {
+	font-family: 'Raleway', sans-serif;
+    width: 40px;
+    text-align: right;
+    color: #fff;
+    font-size: 14px;
+    flex-shrink: 0;
+	font-weight: 700;
+  }
+
+
+  
+
+
+  .review-card1 {
+    background-color: #0d0d0d;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .review-top2 {
+    position: relative;
+    padding-right: 80px; /* room for badge */
+  }
+
+  .review-name-badge2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .review-name-badge2 > div:first-child {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .review-badge {
+	margin-left: 6rem;
+    position: absolute;
+    top: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 8px;
+    font-weight: bold;
+    gap: 6px;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .badge-helpful {
+    background-color: #22c55e;
+  }
+
+  .badge-expert {
+    background-color: #3b82f6;
+  }
+
+  .badge-repeat {
+    background-color: #eab308;
+  }
+
+  .badge-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: url('images/pfp.png') center/cover no-repeat;
+  }
+
+  .review-header2 {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px; /* space between pfp and info bundle */
+  }
+
+  .review-pfp2 {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: url('images/pfp.png') center/cover no-repeat;
+    flex-shrink: 0;
+  }
+
+  .review-info-bundle2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2px;
+  }
+
+  .stars2 {
+    font-size: 14px;
+    color: #fbbf24;
+    line-height: 1.2;
+  }
+
+  .review-date2 {
+    font-size: 11px;
+    color: #aaa;
+    line-height: 1.2;
+  }
+
+  .review-title2 {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 6px;
+    margin-right:80px;
+    text-align: left;
+    color: #fff;
+  }
+
+  .review-body2 {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-left: 0;
+    text-align: left;
+    color: #ddd;
+  }
+
+
+
+  	#reviewGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Optional: spacing between rows */
+}
+/* Review row container */
+.review-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
+  /* Desktop max width */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+justify-content: center ;
+
+ scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+}
+
+.review-row::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Responsive width on small screens */
+@media (max-width: 819px) {
+  .review-row {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Cards snap individually */
+.review-card1 {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 300px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*responsive styling*/
+
+
+@media (max-width: 1024px) {
+  .filter-column1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .control-button1,
+  .filter-button1,
+  .clear-filters1,
+  .back-button1,
+  .close-button1 {
+    width: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Tablet Styles */
+  .review-header1 {
+    flex-direction: column;
+    max-height: none;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .review-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /*.filter-dropdown1 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    transform: translate(-50%, -10px);
+  }*/
+    .filter-dropdown1 {
+    flex-direction: row; /* Keep as rows */
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  /*.filter-column1 {
+    width: 100%;
+    min-width: auto;
+    padding: 0;
+  }*/
+  .filter-column1 {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 160px;
+    width: auto;
+  }
+
+  .filter-button1,
+  .clear-filters1,
+  .back-button1 {
+    width: 100%;
+  }
+
+
+
+
+
+   .filter-dropdown1 h4 {
+    margin-bottom: 4px;
+  }
+
+  .filter-option1 {
+    margin-bottom: 6px;
+  }
+}
+
+
+
+
+
+
+
+@media (max-width: 819px) {
+ .filter-button1{
+	display: none;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+  .back-button1 {
+    font-size: 12px;
+    top: 8px;
+    left: 8px;
+    width: auto;
+    padding: 6px 10px;
+  }
+
+  .close-button1 {
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    width: auto;
+    padding: 6px 10px;
+  }
+
+  .filter-button1,
+  .clear-filters1 {
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .review-card1 {
+    font-size: 18px;
+  }
+
+  .rating-breakdown {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .rating-label {
+    font-size: 12px;
+  }
+
+  .rating-percent {
+    font-size: 12px;
+  }
+
+  .rating-bar-outer {
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Small Phone Styles */
+  .review-grid1 {
+    grid-template-columns: 1fr;
+  }
+
+  .review-header1,
+  .review-highlight-box {
+    padding: 10px;
+  }
+
+  .filter-dropdown1 {
+    gap: 12px;
+  }
+}
+</style>
+
+
+<div class="review-section1">
+  <div class="reviews-container1">
+
+
+    <div class="review-header1 review-layout-grid">
+  <div>
+	    <button class="back-button1 control-button1" id="backButton" onclick="closeReviews()">Back</button>
+
+    <button class="filter-button1 control-button1" onclick="toggleDropdown()">Filter</button>
+  </div>
+  <div>
+    <!-- This is your "remaining 3/4ths" wide space -->
+    <div class="review-highlight-box">
+			<div id="ratingBreakdown" class="rating-breakdown"></div>    </div>
+
+			<div id="ratingBreakdown" class="rating-breakdown"></div>
+  </div>
+</div>
+
+
+    <div class="filter-dropdown1" id="filterDropdown">
+      <div class="filter-column1">
+		    <button class="close-button1 control-button1" id="closeButton" onclick="toggleDropdown()">Close</button>
+
+        <button class="clear-filters1 control-button1" onclick="clearFilters()">Clear Filters</button>
+      </div>
+      <div class="filter-column1">
+		        <h4>Rating</h4>
+        <div class="filter-option1"><label><input type="checkbox" name="rating" value="1"> 1 Star</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="rating" value="2"> 2 Stars</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="rating" value="3"> 3 Stars</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="rating" value="4"> 4 Stars</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="rating" value="5"> 5 Stars</label></div>
+      </div>
+      <div class="filter-column1">
+        <h4>Type</h4>
+        <div class="filter-option1"><label><input type="checkbox" name="type" value="positive"> Positive</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="type" value="negative"> Negative</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="type" value="helpful"> Helpful</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="type" value="repeat"> Repeat Customer</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="type" value="expert"> Expert Opinion</label></div>
+      </div>
+      <div class="filter-column1">
+        <h4>Timeframe</h4>
+        <div class="filter-option1"><label><input type="checkbox" name="time" value="newest"> Newest</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="time" value="14"> Jan–Apr 2025</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="time" value="58"> Jun–Sep 2025</label></div>
+        <div class="filter-option1"><label><input type="checkbox" name="time" value="912"> Oct–Dec 2024</label></div>
+		<div class="filter-option1"><label><input type="checkbox" name="time" value="oldest"> Oldest</label></div>
+      </div>
+    </div>
+
+
+<style>
+	.control-button1 {
+  padding: 6px 12px;
+  width: 160px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  margin-bottom: 12px;
+  text-align: center;
+  box-sizing: border-box;
+}
+</style>
+
+
+    <div class="review-grid1" id="reviewGrid">
+      <!-- Review cards (1–20) -->
+      <script>
+        const reviewData = [
+          { id: 1, rating: 4, type: 'positive', time: '58' },
+          { id: 2, rating: 5, type: 'negative', time: '912' },
+          { id: 3, rating: 5, type: 'expert', time: '14' },
+          { id: 4, rating: 3, type: 'helpful', time: 'oldest' },
+          { id: 5, rating: 5, type: 'repeat', time: 'newest' },
+          { id: 6, rating: 2, type: 'positive', time: '14' },
+          { id: 7, rating: 3, type: 'negative', time: '58' },
+          { id: 8, rating: 4, type: 'expert', time: 'newest' },
+          { id: 9, rating: 4, type: 'helpful', time: '912' },
+          { id: 10, rating: 5, type: 'repeat', time: '14' },
+          { id: 11, rating: 3, type: 'positive', time: 'oldest' },
+          { id: 12, rating: 4, type: 'helpful', time: '58' },
+          { id: 13, rating: 4, type: 'repeat', time: '14' },
+          { id: 14, rating: 1, type: 'negative', time: '912' },
+          { id: 15, rating: 5, type: 'expert', time: 'newest' },
+          { id: 16, rating: 3, type: 'positive', time: '58' },
+          { id: 17, rating: 4, type: 'repeat', time: 'oldest' },
+          { id: 18, rating: 5, type: 'expert', time: '14' },
+          { id: 19, rating: 5, type: 'helpful', time: '58' },
+          { id: 20, rating: 5, type: 'positive', time: 'newest' },
+        ];
+
+		const reviewGrid = document.getElementById('reviewGrid');
+
+const timeMap = {
+  '14': 'Jan–Apr 2025',
+  '58': 'Jun–Sep 2025',
+  '912': 'Oct–Dec 2024',
+  'newest': 'Jul–Sep 2025',
+  'oldest': 'Oct–Dec 2023'
+};
+
+function createStars(rating) {
+  return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+}
+
+function createBadge(type) {
+  const badgeClassMap = {
+    helpful: 'badge-helpful',
+    expert: 'badge-expert',
+    repeat: 'badge-repeat'
+  };
+  if (!badgeClassMap[type]) return '';
+  return `
+    <div class="review-badge ${badgeClassMap[type]}">
+      <div class="badge-icon"></div>
+      ${type.charAt(0).toUpperCase() + type.slice(1)}
+    </div>
+  `;
+}
+
+let row;
+reviewData.forEach((r, index) => {
+  if (index % 4 === 0) {
+    row = document.createElement('div');
+    row.className = 'review-row';
+    reviewGrid.appendChild(row);
+  }
+
+  const card = document.createElement('div');
+  card.className = 'review-card1';
+  // ...set attributes and innerHTML...
+
+  card.setAttribute('data-rating', r.rating);
+  card.setAttribute('data-type', r.type);
+  card.setAttribute('data-time', r.time);
+  card.setAttribute('data-id', r.id);
+
+  const badgeHTML = createBadge(r.type);
+
+  card.innerHTML = `
+  <div class="review-top2">
+    <div class="review-name-badge2">
+      ${badgeHTML}
+    </div>
+  </div>
+
+  <div class="review-header2">
+    <div class="review-pfp2"></div>
+    <div class="review-info-bundle2">
+      <div style="font-size: 15px; font-weight: bold;">Jane D.</div>
+      <div class="stars2">${createStars(r.rating)}</div>
+      <div class="review-date2">${timeMap[r.time] || r.time}</div>
+    </div>
+  </div>
+
+  <div class="review-title2">These are template reviews!</div>
+  <div class="review-body2">
+This card is used to help show how filters, ratings, review types, and timeframes shape the feedback system and enhance the user experience.  </div>
+`;
+
+
+  row.appendChild(card);
+});
+
+      </script>
+    </div>
+  </div>
+</div>
+
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+document.querySelector('.review-section1').style.display = 'none';
+document.getElementById('filterDropdown').style.display = 'none';
+document.getElementById('filterDropdown').classList.remove('active');
+document.getElementById('backButton').style.display = 'inline-block';
+document.getElementById('closeButton').style.display = 'none';
+
+    const dropdown = document.getElementById('filterDropdown');
+    const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+    const grid = document.getElementById('reviewGrid');
+    const backButton = document.getElementById('backButton');
+    const closeButton = document.getElementById('closeButton');
+
+    function toggleDropdown() {
+      if (dropdown.classList.contains('active')) {
+        dropdown.classList.remove('active');
+        setTimeout(() => {
+          dropdown.style.display = 'none';
+          backButton.style.display = 'inline-block';
+          closeButton.style.display = 'none';
+        }, 300);
+      } else {
+        dropdown.style.display = 'flex';
+        setTimeout(() => {
+          dropdown.classList.add('active');
+        }, 10);
+        backButton.style.display = 'none';
+        closeButton.style.display = 'inline-block';
+      }
+    }
+
+    function outsideClickListener(e) {
+      if (!dropdown.contains(e.target) && !e.target.classList.contains('filter-button1')) {
+        dropdown.classList.remove('active');
+        setTimeout(() => {
+          dropdown.style.display = 'none';
+          backButton.style.display = 'inline-block';
+          closeButton.style.display = 'none';
+        }, 300);
+        document.removeEventListener('click', outsideClickListener);
+      }
+    }
+
+    function clearFilters() {
+      checkboxes.forEach(cb => {
+        cb.checked = false;
+        cb.parentElement.classList.remove('selected');
+      });
+
+      const cards = Array.from(document.querySelectorAll('.review-card1'));
+      cards.sort((a, b) => Number(a.dataset.id) - Number(b.dataset.id));
+     grid.innerHTML = ''; // clear existing rows
+
+let row;
+cards.forEach((card, index) => {
+  if (index % 4 === 0) {
+    row = document.createElement('div');
+    row.className = 'review-row';
+    grid.appendChild(row);
+  }
+  row.appendChild(card);
+});
+
+    }
+
+    function getCheckedValue(name) {
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : null;
+    }
+
+    function applyFilters() {
+      const selected = {
+        rating: getCheckedValue('rating'),
+        type: getCheckedValue('type'),
+        time: getCheckedValue('time')
+      };
+
+      const cards = Array.from(document.querySelectorAll('.review-card1'));
+
+      cards.forEach(card => {
+        let matchCount = 0;
+        if (selected.rating && card.dataset.rating === selected.rating) matchCount++;
+        if (selected.type && card.dataset.type === selected.type) matchCount++;
+        if (selected.time && card.dataset.time === selected.time) matchCount++;
+        card.dataset.match = matchCount;
+      });
+
+      cards.sort((a, b) => b.dataset.match - a.dataset.match);
+     grid.innerHTML = ''; // clear existing rows
+
+let row;
+cards.forEach((card, index) => {
+  if (index % 4 === 0) {
+    row = document.createElement('div');
+    row.className = 'review-row';
+    grid.appendChild(row);
+  }
+  row.appendChild(card);
+});
+
+    }
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', function () {
+        checkboxes.forEach(other => {
+          if (other !== this && other.name === this.name) {
+            other.checked = false;
+            other.parentElement.classList.remove('selected');
+          }
+        });
+
+        checkboxes.forEach(box => {
+          box.parentElement.classList.toggle('selected', box.checked);
+        });
+
+        applyFilters();
+      });
+    });
+
+
+
+
+	 const ratings = [1, 2, 3, 4, 5];
+  const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
+  reviewData.forEach(r => counts[r.rating]++);
+  const total = reviewData.length;
+
+  const container = document.getElementById('ratingBreakdown');
+  container.innerHTML = ''; // clear in case of refresh
+
+  ratings.reverse().forEach(rating => {
+    const percent = total ? Math.round((counts[rating] / total) * 100) : 0;
+
+    const row = document.createElement('div');
+    row.className = 'rating-row';
+
+    row.innerHTML = `
+      <div class="rating-label">${rating} star</div>
+      <div class="rating-bar-outer">
+        <div class="rating-bar-inner" style="width: ${percent}%"></div>
+      </div>
+      <div class="rating-percent">${percent}%</div>
+    `;
+
+    container.appendChild(row);
+  });
+
+    window.toggleDropdown = toggleDropdown;
+    window.clearFilters = clearFilters;
+  });
+
+  function closeReviews() {
+    document.querySelector('.review-section1').style.display = 'none';
+  
+ const closeDiv = document.querySelector('.close-div');
+if (closeDiv) {
+  closeDiv.style.display = 'block';
+}
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Product Page Styles-------------------------------------------------------------------------------------------->
+ <style>
+
+.backdrop {	
+	background: transparent !important;  
+	max-width: 1440px !important;
+	margin: auto;
+	margin-top: 75px;
+}
+/* divider */
+	.divider-sidebar{
+		margin-top: 5rem;
+	}
+
+/* GENERAL RESET */
+#product-page {
+  padding: 2rem;
+  font-family: sans-serif;
+  color: #333;
+  background: #51525f;
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.back-btn {
+  font-size: 1rem;
+  cursor: pointer;
+}
+.breadcrumbs {
+  font-size: 0.9rem;
+  color: #c2c2c2;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* MAIN LAYOUT */
+.product-main {
+	background:transparent !important;
+  display: grid;
+ grid-template-columns: 500px 1fr 260px; /* fixed image | flexible info | fixed sidebar */  gap: 2rem;
+align-items: stretch; /* Ensures all columns align to tallest column (image) */
+}
+
+
+
+
+
+
+.carousel-track {
+  display: flex;
+  overflow: hidden;
+  gap: 1rem;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item {
+  flex: 0 0 100%; /* default: one item visible */
+  box-sizing: border-box;
+}
+
+.carousel-item img {
+  width: 80%;
+  height: 400px; /* or adjust as needed */
+  object-fit: cover;
+  border-radius: 0.5em;
+  justify-self: center;
+}
+
+/* Tablet and larger: show 4 items side-by-side */
+@media (min-width: 768px) {
+  .carousel-item {
+    flex: 0 0 25%;
+  }
+
+  .carousel-track {
+    overflow: hidden;
+    gap: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* IMAGE CAROUSEL */
+.product-image-carousel {
+  position: relative;
+}
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+   object-fit: cover;
+}
+.image-gallery img {
+  width: 100%;
+  border-radius: 8px;
+   object-fit: cover;
+}
+.image-gallery {
+  position: relative;
+  width: 100%;
+  height: auto;
+   object-fit: cover;
+}
+
+.carousel-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+   object-fit: cover;
+}
+
+.carousel-image.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+   object-fit: cover;
+   height: 100%;
+}
+
+.carousel-image.slide-in-left {
+  transform: translateX(-100%);
+}
+
+.carousel-image.slide-in-right {
+  transform: translateX(100%);
+}
+
+#product-images {
+  position: relative;
+  overflow: hidden;
+   aspect-ratio: 1 / 1; /* square */
+  /*height: 500px;  Or set fixed height like 400px */
+   object-fit: cover !important;
+}
+
+
+
+/* Image Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 2;
+}
+
+.zoom-toggle {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.125);
+  font-size: 1.2rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  z-index: 2;
+  line-height: 1;
+}
+.carousel-btn.left { left: 0.5rem; }
+.carousel-btn.right { right: 0.5rem; }
+.zoom-toggle {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.125) !important;
+
+  font-size: 1.2rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.carousel-btn.left { left: 0.5rem; }
+.carousel-btn.right { right: 0.5rem; }
+.zoom-toggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.carousel-dots {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.125);
+  border-radius: 50%;
+  display: inline-block;
+  transition: transform 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  transform: scale(1.3);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+
+/* Zoom toggle active mode */
+.image-container.zoomed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  height: 90vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9000000000;
+  border-radius: 12px;
+  box-shadow: 0 0 0 100vmax rgba(0,0,0,0.75); /* Optional dark backdrop */
+}
+
+.image-container.zoomed .carousel-image {
+  object-fit: contain;
+  max-height: 800px;
+}
+
+.image-container.zoomed .carousel-btn,
+.image-container.zoomed .carousel-dots {
+  display: none;
+}
+
+.image-container.zoomed .zoom-toggle {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.0125);
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.image-container.zoomed img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+
+
+
+/*Description / Info Section*/
+
+.surround{
+		margin-top: 40px;
+	}
+	.product-description-tabs {
+  margin-top: 2rem;
+}
+
+.product-description-tabs .tab-content {
+  background: transparent;
+  color: #eee;
+  padding: 1.5rem 2rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.125);
+  border-left: 2px solid rgba(255, 255, 255, 0.125);
+  border-right: 2px solid rgba(255, 255, 255, 0.125);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.125);
+  border-radius: 0 8px 8px 8px;
+  min-height: 475px;
+  max-height: 475px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  overflow-y: scroll;
+  margin-top: 0px !important; /* overlap the tabs' bottom border */
+  position: relative;
+  z-index: 1;
+   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.product-description-tabs .tab-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.product-description-tabs .tabs {
+	position: relative;
+	z-index: 3;
+  display: flex;
+  gap: 0;
+  margin-bottom: 0;
+    justify-content: flex-start; /* left align tabs */
+  max-width: fit-content;      /* shrink-wrap the tabs container */
+}
+
+.product-description-tabs .tab {
+  padding: 0.5rem 1rem;        /* smaller padding for modest size */
+		background-color: transparent;
+  color: #ccc;
+  border: 2px solid rgba(255, 255, 255, 0.125); /* force override template borders */
+  border-bottom: none !important;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  user-select: none;
+  min-width: 100px;            /* modest fixed width */
+  box-shadow: none !important; /* kill any ghost shadows */
+  outline: none !important;    /* kill default outlines */
+  line-height: 2;
+}
+
+.product-description-tabs .tab:not(:last-child) {
+  border-right: none !important; /* override any template right borders */
+}
+
+.product-description-tabs .tab.active {
+		background-color: rgba(255, 255, 255, 0.075);
+  color: #fff;
+  position: relative;
+  z-index: 2; /* above tab-content */
+  box-shadow: none !important;
+}
+
+.product-description-tabs .tab:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.075);
+  color: #eee;
+}
+
+/* Remove any lingering button styles from template */
+.product-description-tabs .tab {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+/*Sidebar Buttons*/
+.shipping-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.shipping-trigger {
+  width: 100%;
+  padding: 0.5rem;
+  background: transparent;
+  color: #c2c2c2;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+}
+
+.shipping-trigger::after {
+  content: "▾";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.shipping-menu {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  background: #0c0c0c;
+  color: #c2c2c2;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 0.25rem;
+  z-index: 10;
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 0;
+}
+
+.shipping-menu.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.shipping-menu li {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+background: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+.shipping-menu li:hover{
+	background:rgba(255, 255, 255, 0.1)
+}
+
+.shipping-menu li:last-child {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom-left-radius: 0.375em;
+  border-bottom-right-radius: 0.375em;
+}
+
+.shipping-menu li:first-child {
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 0.375em;
+  border-top-right-radius: 0.375em;
+}
+
+#receipt-sidebar select,
+#receipt-sidebar button {
+  width: 150%;
+  text-align: center;
+}
+
+#receipt-sidebar select:hover,
+#receipt-sidebar button:hover {
+   background: rgba(255, 255, 255, 0.05);
+
+}
+
+#qty-decrease,
+#qty-increase {
+	font-family: "Segoe UI", "Roboto", sans-serif;
+  font-weight: 400;
+  border-radius: 100%;
+  font-size: 1.25em;
+  text-align: center;
+  color: #c2c2c2;
+  cursor: pointer;
+  line-height: 2.5em;
+}
+
+#qty-count {
+	color: #fff;
+	font-weight: 700;
+	font-family: 'Raleway', sans-serif;
+  font-size: 0.8em;
+  min-width: 2em;
+  text-align: center;
+}
+
+.hidden{
+	display: none;
+}
+
+
+/* === PURCHASE SIDEBAR REFINED - Main Style and Layout === */
+.purchase-details {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  align-self: start;
+  border: solid 2px rgba(255, 255, 255, 0.125);  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  height: 100%;
+  color: #c2c2c2;
+}
+
+.purchase-details h3 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  width: 100%;
+  text-align: center;
+}
+
+.summary-title {
+
+  margin-bottom: 0.15rem;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  font-family: 'Raleway';
+    font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.summary-price {
+ color: #ffffff;
+		font-family: Raleway, Helvetica, sans-serif;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+
+		text-transform: uppercase;
+
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+/* Refined divider */
+.purchase-details hr {
+  width: 80%;
+  margin: 0.25rem 0 1.25rem 0;
+}
+
+/* BATCH ONE: Quantity & Shipping */
+.batch-controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem; /* Space between batches */
+}
+
+.quantity-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+    color: #c2c2c2;
+
+}
+
+
+.qty-decrease,
+.qty-increase {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+}
+
+/* BATCH TWO: Cart & Checkout */
+.batch-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  align-items: center;
+    color: #c2c2c2;
+
+}
+
+.add-to-cart2 {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  white-space: nowrap;
+    color: #c2c2c2;
+
+}
+
+/* Make sure both spans have the same styling */
+.add-to-cart2 .btn-label,
+.add-to-cart2 .ghost {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Make ghost visible for layout but hidden from user */
+.add-to-cart2 .ghost {
+  visibility: hidden;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+.description-pd{
+	margin-bottom: 10px !important;
+}
+/* === FIXES: Centering & Alignment Only (Preserve Solid State Styles) === */
+
+/* Full-width + center-align select and buttons without overriding appearance */
+#receipt-sidebar button:not(#qty-decrease):not(#qty-increase),
+#receipt-sidebar select {
+
+  width: 150% !important;
+  max-width: none;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+
+/* Center the select dropdown text without altering background or native styles */
+#receipt-sidebar select {
+  text-align: center;
+  text-align-last: center;
+}
+
+/* Perfectly round quantity buttons with centered icons */
+#qty-decrease,
+#qty-increase {
+width: min(10vw, 40px) !important;
+height: min(10vw, 40px) !important;
+flex: 0 0 auto !important;
+  border-radius: 50%;
+  border: none;
+  border-color: #c2c2c2;
+  background-color: transparent;
+  color: #c2c2c2;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1 !important;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+#qty-decrease span{
+  transform: translateX(0.5px); /* nudges minus slightly right */
+}
+
+#qty-increase span {
+  transform: translateX(1px); /* nudges plus slightly left */
+}
+
+
+
+/* Ensure qty count is centered */
+#qty-count {
+  font-size: 1.25em;
+  min-width: 2em;
+  text-align: center;
+  line-height: 1;
+}
+
+/* Ensure Cart & Checkout buttons center their text */
+.add-to-cart2,
+.checkout-btn2 {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+  width: 100% !important;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+
+}
+
+/* PRODUCT INFO */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.product-title {
+  font-size: 1.6rem;
+  margin: 0;
+  margin-bottom: -10px;
+}
+.product-price {
+  color: #ffffff;
+  font-size: 1.4rem;
+    margin-bottom:50%  !important;
+		font-family: Raleway, Helvetica, sans-serif;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+
+		text-transform: uppercase;
+}
+
+
+.product-rating {
+	margin-bottom: -30px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+}
+.stars {
+  color: #f5a623;
+  font-size: 1.5rem;
+}
+.review-count{
+	cursor: pointer;
+	font-family: 'Raleway', sans-serif;
+	color: #fff;
+	font-weight: 200;
+}
+.review-count:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === PRODUCT PAGE: MOBILE FULL LAYOUT === */
+@media (max-width: 768px) {
+
+/*some header stuff */
+.rec-title,
+  .review-header-text{
+	  font-size: 1.1rem;
+
+}
+
+
+
+	 /* --- Top Bar Spacing & Button Sizing --- */
+  .top-bar {
+    margin-top: 2rem;
+  }
+  .back-btn{
+	font-size: 0.9rem;
+	text-align: center !important;
+  }
+
+
+  /* --- Product Title, Price, Rating --- */
+  /* --- Product Info Container --- */
+.product-info {
+  text-align: left;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* --- Product Title & Price --- */
+.product-title,
+.product-price {
+  text-align: left !important;
+  font-size: 1.5rem;
+  margin: 0; /* REMOVE auto */
+  padding: 0; /* Let container handle padding */
+}
+
+.product-price{
+	margin-top:-20px;
+	margin-bottom: 40px;
+}
+
+/* --- Product Rating --- */
+.product-rating {
+  text-align: left !important;
+  margin-top:4rem;
+  padding: 0;
+  
+}
+
+  .product-title,
+  .product-price {
+    text-align: left !important;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    max-width: 500px;
+  }
+
+  .product-title {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-bottom: 10px !important;
+}
+
+  .product-price {
+	font-size: 1.2rem;
+    margin-bottom: 0px !important; /* Reduce from 150px */
+  }
+
+  .product-rating {
+	margin-top: 5px;
+    text-align: left;
+    padding: 0 1rem;
+    max-width: 500px;
+   margin-bottom: 10px !important;
+  }
+
+
+  /* --- Reduce Space Between Sidebar Divider and Buttons --- */
+  .sidebar-divider {
+    margin-bottom: 0rem !important;
+  }
+
+  .divider-sidebar {
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .batch-controls,
+  .batch-buttons {
+    margin-top: 0 !important;
+  }
+
+  #product-page {
+    padding: 1rem;
+  }
+
+  /* Top bar: keep back button left, breadcrumbs right */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .top-bar .back-btn {
+    text-align: left;
+    flex: 1;
+  }
+
+  .top-bar .breadcrumbs {
+    text-align: right;
+    flex: 1;
+    font-size: 0.85rem;
+  }
+
+  /* Main layout: stack vertically */
+  .product-main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  /* Full width containers, centered */
+  .product-image-carousel,
+  .purchase-details,
+  .product-description-tabs {
+    width: 100% !important;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .image-container {
+    width: 100%;
+  }
+
+  .carousel-btn.left,
+  .carousel-btn.right {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* --- Zoom Button Placement --- 
+  .zoom-toggle {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    z-index: 2;
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }*/
+
+
+  /* Sidebar-specific centering */
+  .purchase-details {
+    text-align: center;
+  }
+
+  .summary-title,
+  .summary-price,
+  .purchase-details h3 {
+    text-align: center !important;
+  }
+  .summary-title{
+	font-family: 'Raleway';
+    font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  }
+  .purchase-details h3{
+	font-family: 'Raleway';
+    font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  }
+
+  .sidebar-divider {
+    margin: 1rem auto;
+  }
+
+  /* Optional: tabs still left-aligned for readability */
+  .tab-content {
+    text-align: left !important;
+  }
+
+  /* Space things out a bit */
+  .product-description-tabs {
+    margin-top: 2rem;
+  }
+
+  #reviews {
+    max-width: 500px;
+    margin: 2rem auto;
+    text-align: left;
+    padding: 0 1rem;
+  }
+
+  /* Optional helper: make buttons fit mobile better */
+  .button,
+  .checkout-btn2 {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+
+
+
+/* For huge screens */
+@media (min-width: 1440px){
+/* Full-width + center-align select and buttons without overriding appearance */
+#receipt-sidebar button:not(#qty-decrease):not(#qty-increase),
+#receipt-sidebar select {
+  width: 125% !important;
+  max-width: none;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+}
+@media screen and (max-width: 736px) {
+
+.back-btn{
+	font-size: 0.8rem;
+}
+.mini-notification{
+width:200px;
+font-size:1rem;
+}
+}
+
+
+
+/* TABLET + SMALL DESKTOP RESPONSIVE (841px – 1024px+) */
+@media (min-width: 819px) and (max-width: 1045px) {
+  .product-main {
+    display: grid;
+    grid-template-columns: 500px 1fr 260px; /* fixed image | flexible info | fixed sidebar */
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .product-image-carousel {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+  }
+
+  .purchase-details {
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
+    padding: 1rem;
+    align-self: start;
+  }
+
+  .product-info {
+    min-width: 150px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    z-index: 1;
+  }
+
+  .quantity-selector {
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: inline-flex;
+  align-items: center !important;
+  gap: 0.5rem;
+}
+
+.quantity-selector button {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-selector span#qty-count {
+  min-width: 2rem;
+  text-align: center;
+  display: inline-block;
+}
+
+
+
+  /* Ensure buttons and dropdowns don't overflow */
+  .purchase-details button,
+  .purchase-details .shipping-trigger,
+  .purchase-details .checkout-btn2,
+  .purchase-details .add-to-cart2 {
+    width: 150% !important;
+    max-width: none;
+    position: relative;
+    /*left: 50%;
+    transform: translateX(-50%);*/
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .shipping-dropdown,
+  .batch-controls,
+  .batch-buttons {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+/* Default */
+.product-info {
+  display: block !important;
+}
+.product-info-alt {
+  display: none;
+}
+
+/* Mobile layout: stacked */
+@media (max-width: 818px) {
+  .product-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .product-info {
+    display: block !important;
+  }
+
+  .product-info-alt {
+    display: none;
+  }
+}
+
+/* Tablet: Fallback stacked layout for 819px–888px (prevents sidebar clipping) */
+@media (min-width: 819px) and (max-width: 888px) {
+  .product-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .product-info {
+    display: none !important;
+  }
+
+  .product-info-alt {
+    display: block;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .purchase-details {
+    width: 260px;
+    max-width: 260px;
+    padding: 1rem;
+  }
+}
+
+/* Tablet+: Grid layout from 889px to 1045px */
+@media (min-width: 889px) and (max-width: 1045px) {
+  .product-main {
+    display: grid;
+    grid-template-columns: 500px 1fr 260px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .product-info {
+    display: none !important;
+  }
+
+  .product-info-alt {
+    display: block;
+    grid-column: 1 / span 3;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .product-image-carousel {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+  }
+
+  .purchase-details {
+    grid-column: 3;
+    justify-self: end;
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
+    padding: 1rem;
+  }
+}
+
+/* Full desktop layout 1046px+ */
+@media (min-width: 1046px) {
+  .product-main {
+    display: grid;
+    grid-template-columns: 500px 1fr 260px;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .product-info {
+    display: block !important;
+  }
+
+  .product-info-alt {
+    display: none;
+  }
+
+  .product-image-carousel {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+  }
+
+  .purchase-details {
+	
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
+    padding: 1rem;
+  }
+}
+
+/* Medium area 889-819*/
+
+@media (min-width: 819px) and (max-width: 888px) {
+  .product-main {
+    display: grid;
+    grid-template-columns: 2fr 2fr; /* Fluid: image | alt-info | sidebar */
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .product-info {
+    display: none !important;
+  }
+
+  .product-info-alt {
+    display: block;
+    grid-column: 1 / span 3;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+
+  .purchase-details {
+	    grid-column: 2;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 1rem;
+    /*justify-self: end;*/
+  }
+}
+
+
+
+
+</style>
+</div>
+
+<!-- End of prod page styles----------------------------------------------------------------------------------------------------->
+           <!-- Footer -->
+           <section id="footer">
+               <div class="inner">
+                   <ul class="copyright">
+                       <li>&copy; Williams Inc. All rights reserved.</li>
+                       <li>Design: <a target="_blank" href="mailto:64judew64@gmail.com">Jude Williams</a></li>
+                       <li>Contact: <a>@64judew64@gmail.com</a></li>
+
+                   </ul>
+               </div>
+           </section>
+<style>
+	.copyright{
+		font-family: 'Raleway', sans-serif;
+		font-weight: 200;
+		text-transform: uppercase;
+	}
+</style>
+
+       </div>
+
+
+       <!-- Scripts -->
+       <script src="assets/js/jquery.min.js"></script>
+       <script src="assets/js/jquery.scrollex.min.js"></script>
+       <script src="assets/js/browser.min.js"></script>
+       <script src="assets/js/breakpoints.min.js"></script>
+       <script src="assets/js/util.js"></script>
+       <script src="assets/js/main.js"></script>
+
+
+
+
+     <script>
+window.cart = window.cart || [];
+
+
+const products = [
+  {
+    id: 1,
+    name: "Running Shoes",
+    price: 59.99,
+    tags: ["Mens", "Shoes"],
+description: "<p>Step up your pace with these Running Shoes, engineered for performance, comfort, and style. Whether you're running laps at the track or dashing through city streets, they deliver responsive support in every step. Breathable mesh uppers keep airflow steady, helping to prevent sweat buildup and blisters. Lightweight yet durable, they feel like a second skin without compromising on protection. The shock-absorbing sole cushions impact and reduces strain on joints. Designed to move with your natural gait, they encourage efficient stride mechanics.<br><br>A reinforced heel cup stabilizes each landing, helping to reduce fatigue on long runs. Traction outsoles grip a variety of surfaces, from pavement to trail paths. The flexible forefoot gives you the freedom to adapt quickly to your environment. Lace them up for morning jogs, weekend races, or even casual everyday wear. With an ergonomic silhouette that supports long-term wear, they're just as suited for high-performance training as they are for errands. Plus, their modern aesthetic pairs effortlessly with your favorite athleisure outfits.<br><br>Available in sizes 7 to 13 and crafted to fit true to size, these shoes are made for real-world movement. Trusted by runners of all levels, they've earned a loyal following thanks to their blend of performance and design. The material choices focus on longevity without adding weight or stiffness. Ideal for anyone from 5K beginners to marathon veterans. With thousands of pairs sold and stellar reviews, it's easy to see why they’re a top choice. When every step counts, these are the shoes to count on.</p>",
+    summary: "Lightweight and breathable running shoes designed for comfort and performance. Ideal for daily workouts or casual wear, with premium endurance and style.",
+    images: ["images/shoes3.jpg", "images/shoes2.jpg", "images/shoes1.jpg"],
+info: "<p>Weight: 9.4 oz  <br><br> Heel-to-toe drop: 8mm <br><br> Upper: Mesh fabric <br><br> Sole: EVA foam + rubber <br><br> Laces: Flat polyester</p>"
+  },
+  {
+    id: 2,
+    name: "Silk Face Cream",
+    price: 29.95,
+    tags: ["Beauty & Skincare"],
+description: "<p>Revitalize your skincare routine with Silk Face Cream, a silky-soft moisturizer that delivers deep hydration and luminous results. Packed with silk proteins and botanical extracts, it helps smooth out fine lines while boosting your skin’s natural glow. The creamy texture glides on effortlessly, soaking in without leaving any greasy residue. Perfect for morning and night use, it works well under makeup or as the last step in your evening regimen. Sensitive skin? No problem—this gentle formula was made with all skin types in mind. You’ll feel the difference after just a few uses.<br><br>Each application works to restore your skin's moisture barrier, shielding it from daily pollutants and stressors. Hyaluronic acid locks in hydration for plumper, more elastic skin. Jojoba oil soothes irritation while adding long-lasting softness. Use it daily to maintain balance, elasticity, and a healthy skin tone. It layers beautifully with serums, SPF, or foundation. Over time, it helps reduce dullness and uneven texture, making your complexion feel truly renewed.<br><br>With a near-perfect 4.9-star rating, this cream has won over thousands of fans. Its elegant packaging makes it ideal for gifting or personal indulgence. A little goes a long way, so one jar lasts far longer than expected. Dermatologist-approved and cruelty-free, it checks all the boxes for conscious beauty lovers. Many users say it's become their holy grail product. When you want your skin to feel as good as it looks, this cream delivers on every level.</p>",
+    summary: "Luxurious silk-infused cream that deeply hydrates and softens skin. Absorbs quickly and leaves a radiant, non-greasy finish for all skin types.",
+    images: ["images/skin1.jpg", "images/skin2.jpg", "images/skin3.jpg"],
+info: "<p>Net weight: 1.7 oz (50 ml) <br><br> Shelf life: 24 months <br><br> pH level: 5.5 <br><br> Key ingredients: Silk protein, hyaluronic acid, jojoba oil <br><br> Cruelty-free <br><br> Paraben-free</p>"
+  },
+  {
+    id: 3,
+    name: "Minimalist Wallet",
+    price: 19.99,
+    tags: ["Accessories", "Mens"],
+description: "<p>Slim down your carry without sacrificing utility with this Minimalist Wallet. Crafted for everyday use, it holds up to 8 cards and folded cash while staying sleek in your pocket. PU leather gives it a refined look, while an aluminum core adds durability and RFID protection. Whether you’re dressed up or down, it fits seamlessly into your lifestyle. Designed to eliminate bulk, it’s perfect for commuters, travelers, and anyone tired of overstuffed wallets. The smooth finish and compact shape make it a joy to use daily.<br><br>Despite its size, this wallet features clever storage compartments for fast access. Your most-used cards slide out easily thanks to the smart internal layout. The aluminum inner layer blocks signals at 13.56 MHz, shielding you from data theft and skimming. Even with full capacity, it keeps its form and doesn’t bulge. Use it in a front pocket, back pocket, or inside your bag without taking up unnecessary space. It’s lightweight yet built to last through years of everyday handling.<br><br>Its understated style makes it a go-to gift for birthdays, holidays, or Father’s Day. Thousands of five-star reviews highlight its quality and convenience. If you're looking to declutter without compromising function, this is the upgrade you need. It’s a favorite among minimalists and professionals alike. Combining smart design with security and style, it proves that less really is more. Once you switch, you’ll never go back to a traditional wallet again.</p>",
+    summary: "Slim, RFID-blocking wallet designed to hold your essentials without bulk. Durable and sleek, it fits comfortably in any pocket.",
+    images: ["images/wallet1.jpg", "images/wallet2.jpg", "images/wallet3.jpg"],
+info: "<p>Dimensions: 3.9\" x 2.8\" x 0.3\" <br><br> Weight: 1.2 oz <br><br> Capacity: Up to 8 cards + folded cash <br><br> Material: PU leather + aluminum core <br><br> RFID-blocking range: 13.56 MHz</p>"
+  },
+  {
+    id: 4,
+    name: "Wireless Earbuds",
+    price: 89.99,
+    tags: ["Electronics", "Tech Gadgets"],
+description: "<p>Cut the cords and enjoy total audio freedom with these Wireless Earbuds. Designed with premium 6mm drivers, they deliver crisp highs, rich mids, and deep bass. Whether you’re on a call or streaming music, active noise cancellation ensures crystal-clear audio. Bluetooth 5.0 provides a reliable, low-latency connection that stays strong even when you're on the move. Each earbud weighs just 4.3g, offering a barely-there feel for hours of use. The ergonomic fit means they stay in place whether you're working out or commuting.<br><br>The compact charging case fits easily in your pocket and provides up to 12 hours of total playtime. A single charge powers the earbuds for several hours, and the USB-C port makes recharging fast and efficient. Touch-sensitive controls let you manage calls, adjust volume, and switch tracks without pulling out your phone. They automatically pair with your last-used device, saving time and effort. Rain or shine, the splash-resistant design holds up to daily life. Whether you're on Zoom or at the gym, they’re built for every environment.<br><br>With over 1,500 five-star reviews, they’re one of the top-rated earbuds in their class. Sleek, minimalist styling makes them suitable for work, workouts, and everything in between. The intuitive interface is user-friendly, even for first-time earbud users. Compatible with iOS and Android, they seamlessly integrate with your lifestyle. Ideal for students, professionals, and travelers alike. This is next-level wireless listening you can count on.</p>",
+    summary: "Crisp, noise-cancelling earbuds with long battery life and a compact charging case. Perfect for music, calls, and all-day comfort on the go.",
+    images: ["images/earbuds1.jpg", "images/earbuds2.jpg", "images/earbuds3.jpg"],
+info: "<p>Earbud weight: 4.3g each <br><br> Case dimensions: 2.5\" x 1.5\" x 1\" <br><br> Charging time: 1.5 hrs <br><br> Driver size: 6mm <br><br> Bluetooth range: 33 ft <br><br> Charging port: USB-C</p>"
+  },
+  {
+    id: 5,
+    name: "Travel Crossbody Bag",
+    price: 74.50,
+    tags: ["Accessories", "Womens", "Travel"],
+description: "<p>Keep everything you need close at hand with the Travel Crossbody Bag. Whether you're exploring a new city or running errands around town, it offers both convenience and style. Crafted from water-resistant nylon, it keeps your belongings safe in light rain or spills. The adjustable strap allows you to wear it high or low depending on your outfit or preference. Compact yet spacious, it features four smart compartments including zippered and slip pockets. You'll always know exactly where your essentials are.<br><br>The lightweight design won't weigh you down during long days out. Easily carry your wallet, phone, passport, and keys without compromising comfort. The outer zip pocket is perfect for quick access items like boarding passes or hand sanitizer. It transitions effortlessly from daytime errands to casual evenings. Available in neutral colors, it complements most wardrobes and looks. Whether you’re traveling by plane or foot, it’s a smart and stylish companion.<br><br>Praised by hundreds of users for its balance of form and function, it holds a 4.7-star rating. The stitching and zippers are built to last, even with frequent use. It’s popular among both minimalists and frequent travelers. Great as a gift or personal essential, it delivers everyday utility in a polished package. From city streets to airport terminals, it handles it all. When you want light, practical, and hands-free, this bag delivers.</p>",
+    summary: "Chic and functional crossbody bag with adjustable strap and multiple compartments. Stylish enough for everyday wear, roomy enough for travel.",
+    images: ["images/bag1.jpg", "images/bag2.jpg", "images/bag3.jpg"],
+info: "<p>Bag size: 9.8\" x 7.5\" x 3\" <br><br> Strap length: Adjustable 28\"–52\" <br><br> Material: Water-resistant nylon <br><br> Compartments: 4 (main, inner zip, outer zip, slip pocket) <br><br> Weight: 12.6 oz</p>"
+  },
+  {
+    id: 6,
+    name: "Bamboo Toothbrush Set",
+    price: 12.95,
+    tags: ["Health & Wellness", "Eco-Friendly"],
+description: "<p>Make a green choice with this Bamboo Toothbrush Set, a simple swap with a big impact. Made from fast-growing, biodegradable bamboo, each handle reduces plastic waste in your routine. The soft bristles are BPA-free and gentle on sensitive gums. Whether you're brushing before bed or starting your day, these brushes offer a natural touch. With sleek, smooth handles, they’re comfortable to grip and beautiful to display. Join the growing number of people choosing sustainable self-care.<br><br>The set includes four toothbrushes, perfect for households or backups. Replace your brush every 3 months and keep your smile fresh year-round. The nylon-6 bristles clean effectively while being safe for the environment. Even the packaging is recyclable, reinforcing the eco-conscious mission. Compost the handle when you're done, and dispose of the bristles responsibly. Each brush helps you reduce your carbon footprint, one use at a time.<br><br>Rated 4.5 stars and loved by eco-minded customers, this set is both functional and forward-thinking. Whether you’re gifting it or upgrading your own habits, it’s a choice you can feel good about. Combine it with natural toothpaste and floss for a full zero-waste routine. Lightweight and travel-friendly, they’re easy to pack for any trip. Small changes make a big difference over time. This is sustainable living—starting with your smile.</p>",
+    summary: "Eco-friendly toothbrushes made from biodegradable bamboo with soft bristles. A sustainable, gentle option for cleaner teeth and a cleaner planet.",
+    images: ["images/tb3.jpg", "images/tb2.jpg", "images/tb1.jpg"],
+info: "<p>Brush length: 7.4\" <br><br> Bristle type: Soft nylon-6 <br><br> Handle material: Moso bamboo <br><br> Set size: 4 brushes <br><br> Compost time: ~6 months (handle only) <br><br> BPA-free</p>"
+  },
+  {
+    id: 7,
+    name: "Thermal Mug",
+    price: 21.00,
+    tags: ["Kitchen", "Travel"],
+description: "<p>Enjoy your favorite beverages at the perfect temperature with this sleek Thermal Mug. Designed with double-wall insulation, it keeps hot drinks warm for hours and cold drinks icy fresh. The 16 oz capacity makes it just right for coffee, tea, or smoothies. A flip-top, leak-resistant lid means you can toss it in your bag worry-free. Whether you're heading to work, hitting the gym, or going on a road trip, it’s your go-to drinkware. The minimalist shape fits most car cup holders and backpack pockets.<br><br>Constructed with 304-grade stainless steel, this mug resists dents, rust, and stains. It’s tough enough to handle daily use and stylish enough to take anywhere. Cleaning is easy—just rinse and go, though it’s not dishwasher-safe. The matte exterior provides a non-slip grip that looks and feels premium. Available in multiple colors, it complements any aesthetic. Use it at your desk, on hikes, or wherever life takes you.<br><br>With over 1,000 five-star reviews, this mug has become a customer favorite. Many users say it’s the best thermal mug they’ve owned. The tight-seal lid prevents spills even when flipped upside down. If you’re looking for a gift or daily essential, this is a great pick. Enjoy every sip just the way you like it. Hot stays hot, cold stays cold—it’s that simple.</p>",
+    summary: "Double-walled thermal mug keeps drinks hot or cold for hours. Durable, leak-resistant design perfect for commuting, work, or adventure.",
+    images: ["images/mug1.jpg", "images/mug2.jpg", "images/mug3.jpg"],
+info: "<p>Capacity: 16 oz (473 ml) <br><br> Dimensions: 7\" tall x 3\" diameter <br><br> Weight: 11 oz <br><br> Material: Stainless steel (304-grade) <br><br> Lid type: Flip-top, leak-resistant <br><br> Dishwasher-safe: No</p>"
+  },
+  {
+    id: 8,
+    name: "Diffuser + Oil Kit",
+    price: 39.99,
+    tags: ["Home & Living", "Health & Wellness"],
+description: "<p>Relax your mind and refresh your space with the Diffuser + Oil Kit. This compact device uses ultrasonic waves to turn water and essential oils into a fine mist. The result? A soothing scent that fills the room and lifts your mood. Whether you need energy, focus, or calm, the included oils are carefully chosen to support wellness. Just add water and a few drops of oil to get started. With its wood grain finish and modern design, it doubles as decor.<br><br>Capable of running for up to 6 hours, the diffuser automatically shuts off when empty for safety. It covers up to 200 sq ft, making it great for bedrooms, offices, or bathrooms. Choose from 7 LED light colors to create the perfect ambiance. USB and wall plug options make it easy to power anywhere. The BPA-free plastic construction is durable and safe for daily use. Whether you’re meditating or winding down for bed, it enhances your environment effortlessly.<br><br>Thousands of happy customers give this kit high marks for performance and design. It’s also a popular gift for birthdays, holidays, or housewarmings. Simple to use and maintain, it adds a touch of calm to any day. The included oils offer a ready-to-go experience—no extra shopping needed. With its balance of beauty and function, it’s more than just a diffuser. It’s a tool for intentional living and mindful moments.</p>",
+    summary: "Aromatherapy diffuser kit with soothing essential oils and 7 LED color modes. Great for relaxation, stress relief, and elevating your space.",
+    images: ["images/diffuser1.jpg", "images/diffuser2.jpg", "images/diffuser3.jpg"],
+info: "<p>Tank size: 120 ml <br><br> Runtime: Up to 6 hours <br><br> Coverage area: 200 sq ft <br><br> Power: USB or wall plug <br><br> Includes: 4 essential oils (10 ml each) <br><br> Materials: BPA-free plastic + wood grain finish</p>"
+  },
+  {
+    id: 9,
+    name: "Standing Desk Converter",
+    price: 129.00,
+    tags: ["Office", "Health & Wellness"],
+description: "<p>Upgrade your workflow with this Standing Desk Converter—a game-changer for comfort and productivity. Designed for seamless transitions, it lets you move from sitting to standing in seconds. Just lift and lock to adjust height smoothly and silently. The large surface holds dual monitors, laptops, and office essentials. Whether you're working from home or in the office, it supports better posture and energy. Say goodbye to the midday slump.<br><br>Built with sturdy MDF and a steel frame, it handles up to 33 lbs with ease. The gas-spring mechanism offers smooth, stable movement with no jerking. Its compact footprint fits most desks without taking over your space. Anti-slip rubber feet keep it securely in place during adjustments. Assembly is minimal—just unbox, set up, and start working better. It’s an ergonomic essential for modern professionals.<br><br>Praised by hundreds for its durability and ease of use, it holds a 4.7-star rating. Many users report improved focus and reduced back pain within days. The matte finish resists scratches and keeps the surface looking clean. Great for laptops, monitors, keyboards, and tablets. It's a thoughtful gift for remote workers or students too. Make your desk do more with this smart, adaptable solution.</p>",
+    summary: "Ergonomic converter lets you switch between sitting and standing effortlessly. Spacious, adjustable surface helps reduce fatigue and improve posture.",
+    images: ["images/desk1.jpg", "images/desk2.jpg", "images/desk3.jpg"],
+info: "<p>Surface area: 31.5\" x 15.7\" <br><br> Height range: 4.7\" to 19.5\" <br><br> Weight capacity: 33 lbs <br><br> Material: MDF + steel frame <br><br> Base footprint: 22\" x 16\" <br><br> Gas-spring lift</p>"
+  },
+  {
+    id: 10,
+    name: "Smart Food Scale",
+    price: 18.95,
+    tags: ["Kitchen", "Organization", "Fitness"],
+description: "<p>Take control of your nutrition with the Smart Food Scale, your new kitchen essential. It offers ultra-precise measurements down to the gram, helping you cook and eat with confidence. Whether you’re meal prepping, baking, or tracking macros, it’s got you covered. The glass platform is sleek, easy to clean, and hygienic. A bright digital display makes readings quick and readable. Plus, it's compact enough to store anywhere.<br><br>Connect it to your smartphone via Bluetooth and unlock powerful tracking features. Use the app to log calories, calculate portion sizes, and reach your dietary goals. Toggle between units like grams, ounces, milliliters, and pounds. The platform measures up to 11 lbs, making it versatile for large or small portions. Powered by two AAA batteries, it's ready when you are. From fitness buffs to busy parents, it suits every lifestyle.<br><br>With a 4.6-star rating and glowing reviews, it's earned its place in countless kitchens. The tempered glass and ABS plastic materials are built for long-term use. Its sleek design blends into modern countertops with ease. Whether you're a seasoned chef or learning to cook, it's a handy tool. Pair it with your favorite recipes or fitness tracker for maximum benefit. Eat smarter and cook better—every single day.</p>",
+    summary: "Precision digital food scale with app connectivity for tracking calories and nutrients. Ideal for meal prep, baking, and healthy living.",
+    images: ["images/food1.jpg", "images/food2.jpg", "images/food3.jpg"],
+info: "<p>Max weight: 11 lbs (5 kg) <br><br> Accuracy: ±1g <br><br> Units: g, oz, ml, lb:oz <br><br> Platform size: 6.3\" x 6.3\" <br><br> Battery: 2 AAA <br><br> Material: Tempered glass + ABS plastic</p>"
+  }
+];
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // --- Flash Setup ---
+  const col12Div = document.querySelector('#shop-search .inner .box .row > .col-12');
+  const input = col12Div?.querySelector('input');
+  const targetDiv = input?.parentElement;
+
+  if (input && targetDiv) {
+    input.addEventListener('click', () => {
+      targetDiv.classList.add('flash');
+      setTimeout(() => targetDiv.classList.remove('flash'), 100);
+    });
+  }
+  
+
+const tags = [
+  "Mens",
+  "Womens",
+  "Shoes",
+  "Accessories",
+  "Beauty & Skincare",
+  "Electronics",
+  "Tech Gadgets",
+  "Travel",
+  "Health & Wellness",
+  "Eco-Friendly",
+  "Kitchen",
+  "Fitness",
+  "Home & Living",
+  "Office",
+  "Organization"
+];
+  let selectedTags = [];
+  let currentProductPrice = 0;
+let selectedShipping = 0;
+
+
+  const productContainer = document.querySelector(".features");
+  const searchInput = document.getElementById("search");
+  const cartBadge = document.getElementById("cart-badge");
+  const cartButton = document.getElementById("cart-button");
+  const checkoutModal = document.getElementById("checkout-modal");
+  const cartItemsList = document.getElementById("cart-items-list");
+  const cartTotal = document.getElementById("cart-total");
+  const filterDropdown = document.getElementById("filter-dropdown");
+  const filterToggle = document.getElementById("filter-toggle");
+  const filterBadge = document.getElementById("filter-badge");
+
+  const productPage = document.getElementById("product-page");
+  const productTitle = document.getElementById("product-title");
+  const productTitleAlt = document.getElementById("alt-product-title")
+  const productPriceAlt = document.getElementById("alt-product-price")
+  const summaryTitle = document.getElementById("summary-title");
+  const productPrice = document.getElementById("product-price");
+   const summaryPrice = document.getElementById("summary-price");
+  const productDescription = document.getElementById("product-description");
+  const productImages = document.getElementById("product-images");
+  const receiptSidebar = document.getElementById("receipt-sidebar");
+  const backToMainBtn = document.getElementById("back-to-main");
+	const qtyCount = document.getElementById("qty-count");
+	const qtyIncrease = document.getElementById("qty-increase");
+	const qtyDecrease = document.getElementById("qty-decrease");
+	const shippingSelect = document.getElementById("shipping-select");
+// Custom dropdown shipping menu (replaces native <select>)
+const shippingTrigger = document.querySelector('.shipping-trigger');
+const shippingMenu = document.querySelector('.shipping-menu');
+
+if (shippingTrigger && shippingMenu) {
+  shippingTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    shippingMenu.classList.toggle('hidden');
+  });
+
+ shippingMenu.querySelectorAll('li').forEach((item) => {
+  item.addEventListener('click', () => {
+    const value = item.dataset.value;
+    const label = item.textContent.trim();
+    shippingTrigger.textContent = label;
+    shippingMenu.classList.add('hidden');
+
+    selectedShipping = parseFloat(value); // ✅ Track selected shipping globally
+    updateTotalPrice(currentProductPrice); // ✅ Recalculate price
+  });
+});
+
+
+  document.addEventListener('click', () => {
+    if (!shippingMenu.classList.contains('hidden')) {
+      shippingMenu.classList.add('hidden');
+    }
+  });
+}
+
+
+
+
+  const filterTagsContainer = document.createElement("div");
+  filterTagsContainer.className = "filter-tags";
+  tags.forEach(tag => {
+    const btn = document.createElement("button");
+    btn.textContent = tag;
+    btn.className = "filter-btn";
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("active");
+      const active = btn.classList.contains("active");
+      if (active) selectedTags.push(tag);
+      else selectedTags = selectedTags.filter(t => t !== tag);
+      renderProducts(searchInput.value);
+      filterBadge.textContent = selectedTags.length;
+      filterBadge.style.display = selectedTags.length > 0 ? "flex" : "none";
+    });
+    filterTagsContainer.appendChild(btn);
+  });
+  filterDropdown.appendChild(filterTagsContainer);
+  filterDropdown.style.display = "none";
+
+  const dropdown = document.createElement("div");
+  dropdown.id = "search-dropdown";
+  dropdown.style.position = "absolute";
+  dropdown.style.width = "100%";
+  dropdown.style.boxSizing = "border-box";
+  dropdown.style.marginTop = "0.25em";
+  dropdown.style.background = "#000";
+  dropdown.style.zIndex = "100";
+  dropdown.style.fontFamily = "inherit";
+  const searchBar = document.getElementById("search-bar-container");
+  searchBar.appendChild(dropdown);
+
+  function highlightMatch(text, query) {
+    const idx = text.toLowerCase().indexOf(query.toLowerCase());
+    if (idx === -1 || !query) return text;
+    return (
+      text.slice(0, idx) +
+      "<strong>" +
+      text.slice(idx, idx + query.length) +
+      "</strong>" +
+      text.slice(idx + query.length)
+    );
+  }
+
+
+  function updateDropdown(matches, filter) {
+    dropdown.innerHTML = "";
+    if (!searchInput.matches(":focus") || !filter.trim()) {
+      dropdown.classList.remove("show");
+      return;
+    }
+    matches.forEach(product => {
+      const item = document.createElement("div");
+      item.classList.add("search-item");
+      item.innerHTML = highlightMatch(product.name, filter);
+      item.style.padding = "0.5em";
+      item.style.cursor = "pointer";
+      item.addEventListener("click", () => {
+        searchInput.value = product.name;
+        renderProducts(product.name);
+        dropdown.classList.remove("show");
+      });
+      dropdown.appendChild(item);
+    });
+    dropdown.classList.toggle("show", matches.length > 0);
+  }
+
+function updateTotalPrice(basePrice) {
+  const qty = parseInt(qtyCount.textContent, 10);
+  const total = (basePrice * qty) + selectedShipping;
+  summaryPrice.textContent = `$${total.toFixed(2)}`;
+
+}
+
+
+
+
+
+
+function showProductPage(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  currentProductPrice = product.price;
+
+  productTitle.textContent = product.name;
+  productPrice.textContent = `$${product.price.toFixed(2)}`;
+    summaryTitle.textContent = product.name;
+  qtyCount.textContent = "1";
+
+  productPriceAlt.textContent=`$${product.price.toFixed(2)}`;
+  productTitleAlt.textContent=product.name;
+
+
+  setupImageCarousel(product.images || []);
+
+
+  selectedShipping = 0;
+if (shippingTrigger) shippingTrigger.textContent = "Free Shipping"; // reset label
+
+  updateTotalPrice(currentProductPrice);
+
+// Connect Add to Cart and Checkout buttons on product page
+const addToCartBtn = productPage.querySelector(".batch-buttons .add-to-cart2");
+const checkoutBtn = productPage.querySelector(".batch-buttons .checkout-btn2");
+
+// Set correct button label
+const labelSpan = addToCartBtn.querySelector('.btn-label');
+labelSpan.textContent = isInCart(product.id) ? "Remove" : "Add to Cart";
+
+// Toggle cart on click
+addToCartBtn.onclick = () => {
+  const qty = parseInt(qtyCount.textContent, 10);
+  const total = (currentProductPrice * qty) + selectedShipping;
+  toggleCart(product, qty, total);
+  labelSpan.textContent = isInCart(product.id) ? "Remove" : "Add to Cart";
+  updateCartUI();
+};
+
+
+
+// Trigger checkout modal
+checkoutBtn.onclick = () => {
+  checkoutModal.style.display = "flex";
+  requestAnimationFrame(() => {
+    checkoutModal.classList.add("show");
+  });
+};
+
+
+  qtyIncrease.onclick = () => {
+    let count = parseInt(qtyCount.textContent, 10);
+    qtyCount.textContent = count + 1;
+    updateTotalPrice(currentProductPrice);
+  };
+
+  qtyDecrease.onclick = () => {
+    let count = parseInt(qtyCount.textContent, 10);
+    if (count > 1) {
+      qtyCount.textContent = count - 1;
+      updateTotalPrice(currentProductPrice);
+    }
+  };
+
+  document.getElementById("main-content").style.display = "none";
+  productPage.style.display = "block";
+
+  // Tab functionality
+const tabButtons = productPage.querySelectorAll(".product-description-tabs .tab");
+const tabContents = productPage.querySelectorAll(".product-description-tabs .tab-content");
+
+tabButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const target = button.getAttribute("data-tab");
+
+    // Set active tab button
+    tabButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    // Show the matching content, hide others
+    tabContents.forEach(content => {
+      if (content.id === target) {
+        content.classList.remove("hidden");
+      } else {
+        content.classList.add("hidden");
+      }
+    });
+  });
+});
+
+// Populate tab content
+const descriptionContent = productPage.querySelector("#description");
+const infoContent = productPage.querySelector("#info");
+
+
+descriptionContent.innerHTML = product.description || "No description available.";
+infoContent.innerHTML = product.info || "No product info available.";
+
+}
+
+
+
+  
+
+
+  function renderProducts(filter = "") {
+    productContainer.innerHTML = "";
+    const filtered = products.filter(p => {
+      const matchText = p.name.toLowerCase().includes(filter.toLowerCase());
+      const matchTags = selectedTags.every(tag => p.tags.includes(tag));
+      return matchText && matchTags;
+    });
+
+    updateDropdown(filtered, filter);
+
+    filtered.forEach(product => {
+      const article = document.createElement("article");
+      const matchStart = product.name.toLowerCase().indexOf(filter.toLowerCase());
+      const matchEnd = matchStart + filter.length;
+      const nameHighlighted =
+        matchStart >= 0 && filter
+          ? product.name.slice(0, matchStart) +
+            "<strong>" +
+            product.name.slice(matchStart, matchEnd) +
+            "</strong>" +
+            product.name.slice(matchEnd)
+          : product.name;
+
+  article.innerHTML = `
+  <a href="#" class="image">
+    <img src="${product.images?.[0] || 'images/pic01.jpg'}" alt="${product.name}" />
+  </a>
+  <div class="card-content">
+    <h3 class="major">${nameHighlighted}</h3>
+    <p class="price" style="margin-top: -1em; font-weight: 600;">$${product.price.toFixed(2)}</p>
+    <hr />
+    <p class="description-pd">${product.summary || "No summary available."}</p>
+
+  </div>
+`;
+
+
+
+
+
+      article.addEventListener("click", (e) => {
+        if (e.target.tagName.toLowerCase() === "button") return;
+        showProductPage(product.id);
+      });
+
+    
+
+      productContainer.appendChild(article);
+    });
+
+    addButtonHoverListeners();
+  }
+
+  function isInCart(id) {
+    return cart.some(p => p.id === id);
+  }
+function toggleCart(product, quantity = 1, customTotal = null) {
+  const index = cart.findIndex(p => p.id === product.id);
+  if (index >= 0) {
+    cart.splice(index, 1); // Remove
+  } else {
+    const total = customTotal !== null ? customTotal : product.price * quantity;
+    cart.push({
+      ...product,
+      quantity,
+      totalPrice: total
+    });
+  }
+  updateCartUI();
+}
+
+
+function updateCartUI() {
+  cartItemsList.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(product => {
+    const row = document.createElement("div");
+    row.classList.add("cart-row");
+
+    const removeBtn = document.createElement("button");
+    removeBtn.classList.add("remove-btn");
+    removeBtn.innerHTML = "&times;";
+    removeBtn.onclick = () => {
+      toggleCart(product);
+      renderProducts(searchInput.value);
+    };
+
+    const info = document.createElement("div");
+    info.style.display = "flex";
+    info.style.flexDirection = "column";
+    info.innerHTML = `
+      <strong>${product.name}</strong>
+      <span>Qty: ${product.quantity}</span>
+      <span>Total: $${product.totalPrice.toFixed(2)}</span>
+    `;
+
+    row.appendChild(info);
+    row.appendChild(removeBtn);
+    cartItemsList.appendChild(row);
+
+    total += product.totalPrice;
+  });
+
+  cartTotal.textContent = `${total.toFixed(2)}`;
+  cartBadge.textContent = cart.length;
+cartBadge.classList.toggle("show", cart.length > 0);
+// Sync button on product page if visible
+if (productPage.style.display === "block") {
+  const labelSpan = productPage.querySelector(".batch-buttons .add-to-cart2 .btn-label");
+  const summaryTitleText = summaryTitle.textContent;
+  const currentProduct = products.find(p => p.name === summaryTitleText);
+  if (currentProduct) {
+    labelSpan.textContent = isInCart(currentProduct.id) ? "Remove" : "Add to Cart";
+  }
+}
+
+}
+window.updateCartUI = updateCartUI;
+
+
+  function addButtonHoverListeners() {
+    document.querySelectorAll('.features article').forEach(article => {
+      const button = article.querySelector('button.add-to-cart');
+      if (!button) return;
+      button.addEventListener('mouseenter', () => article.classList.add('no-highlight'));
+      button.addEventListener('mouseleave', () => article.classList.remove('no-highlight'));
+    });
+  }
+
+  backToMainBtn.addEventListener("click", () => {
+    productPage.style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+  });
+
+  searchInput.addEventListener("input", () => renderProducts(searchInput.value));
+  searchInput.addEventListener("blur", () => setTimeout(() => dropdown.classList.remove("show"), 200));
+
+  filterToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const visible = filterDropdown.style.display === "flex";
+    filterDropdown.style.display = visible ? "none" : "flex";
+    filterDropdown.style.flexWrap = "wrap";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!filterDropdown.contains(e.target) && !filterToggle.contains(e.target)) {
+      filterDropdown.style.display = "none";
+    }
+  });
+
+  cartButton.addEventListener("click", () => {
+    checkoutModal.style.display = "flex";
+    requestAnimationFrame(() => {
+      checkoutModal.classList.add("show");
+    });
+  });
+
+  checkoutModal.addEventListener("click", e => {
+    if (e.target === checkoutModal) {
+      checkoutModal.classList.remove("show");
+      setTimeout(() => {
+        checkoutModal.style.display = "none";
+      }, 400);
+    }
+  });
+
+  renderProducts();
+  updateCartUI();
+});
+
+function setupImageCarousel(images) {
+  const gallery = document.getElementById("product-images");
+  const dotsContainer = document.querySelector(".carousel-dots");
+  const leftBtn = document.querySelector(".carousel-btn.left");
+  const rightBtn = document.querySelector(".carousel-btn.right");
+  const zoomToggle = document.querySelector(".zoom-toggle");
+  const imageContainer = document.querySelector(".image-container");
+  const zoomIcon = zoomToggle.querySelector("i");
+
+
+  let currentIndex = 0;
+
+  gallery.innerHTML = "";
+  dotsContainer.innerHTML = "";
+
+  // Create all image elements
+  const imageElements = images.map((src, index) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.classList.add("carousel-image");
+    if (index === 0) img.classList.add("active");
+    gallery.appendChild(img);
+    return img;
+  });
+
+  // Create dots
+  images.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.className = "carousel-dot";
+    if (index === 0) dot.classList.add("active");
+    dotsContainer.appendChild(dot);
+
+    dot.addEventListener("click", () => {
+      if (index !== currentIndex) {
+        updateCarousel(index);
+      }
+    });
+  });
+
+  // Update carousel with animation
+  function updateCarousel(newIndex) {
+    const allDots = dotsContainer.querySelectorAll(".carousel-dot");
+    const direction = newIndex > currentIndex ? "slide-in-right" : "slide-in-left";
+
+    const currentImage = imageElements[currentIndex];
+    const nextImage = imageElements[newIndex];
+
+    // Remove zoomed state if active
+    if (imageContainer.classList.contains("zoomed")) {
+      imageContainer.classList.remove("zoomed");
+      zoomToggle.innerHTML = "🔍";
+      document.body.style.overflow = "";
+    }
+
+    imageElements.forEach(img => {
+      img.classList.remove("active", "slide-in-left", "slide-in-right");
+    });
+
+    currentImage.classList.add("active");
+    nextImage.classList.add("active", direction);
+    void nextImage.offsetWidth;
+
+    setTimeout(() => {
+      currentImage.classList.remove("active");
+      nextImage.classList.remove("slide-in-left", "slide-in-right");
+    }, 300);
+
+    allDots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === newIndex);
+    });
+
+    currentIndex = newIndex;
+  }
+
+  // Navigation buttons
+  leftBtn.onclick = () => {
+    const newIndex = (currentIndex - 1 + images.length) % images.length;
+    updateCarousel(newIndex);
+  };
+
+  rightBtn.onclick = () => {
+    const newIndex = (currentIndex + 1) % images.length;
+    updateCarousel(newIndex);
+  };
+
+  // Zoom toggle behavior
+zoomToggle.addEventListener("click", () => {
+  imageContainer.classList.toggle("zoomed");
+
+  if (imageContainer.classList.contains("zoomed")) {
+    zoomIcon.classList.remove("fa-search");
+    zoomIcon.classList.add("fa-times"); // Use "xmark" instead of old "close"
+    document.body.style.overflow = "hidden";
+  } else {
+    zoomIcon.classList.remove("fa-times");
+    zoomIcon.classList.add("fa-search");
+    document.body.style.overflow = "";
+  }
+});
+
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const checkoutBtn = document.getElementById("checkout-btn");
+  const notification = document.getElementById("checkout-success");
+
+  // Defensive: Only add event listener if elements exist
+  if (checkoutBtn && notification) {
+    checkoutBtn.addEventListener("click", () => {
+      notification.classList.add("show");
+
+      setTimeout(() => {
+        notification.classList.remove("show");
+      }, 3000);
+    });
+  }
+
+  
+});
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+@keyframes flashClick {
+  0% {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
+  100% {
+    background-color: #363849 !important;
+  }
+}
+
+#shop-search .inner .box .row > .col-12 > div.flash {
+  animation: flashClick 0.5s ease forwards !important;
+}
+#shop-search .inner .box .row > .col-12 > div {
+  position: relative;
+}
+
+#shop-search .inner .box .row > .col-12 > div::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#shop-search .inner .box .row > .col-12 > div.flash::after {
+  opacity: 1;
+  transition: opacity 0.1s ease;
+}
+
+
+</style>
+
+
+   </body>
+</html>
+
+
+

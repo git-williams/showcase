@@ -1,0 +1,1062 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Showcase Template</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			p{
+				font-family: 'Raleway', sans-serif;
+        color: #999 !important;
+
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Main Elements / Showcase</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="generic.html">Shop</a></li>
+								<li><a href="elements.html">Learn More</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+<!-- Hero-->
+<section class="hero">
+    <div class="hero-shape top-triangle shine-text"></div>
+    <div class="hero-shape bottom-triangle shine-text"></div>
+	  
+  
+<div class="arrow5">
+  <div class="arrow5txt">View My Work</div>
+  <div class="arrow5arrow">
+    <svg
+      width="16" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter"
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </div>
+</div>
+
+
+<script>
+  document.querySelector(".arrow5").addEventListener("click", () => {
+    document.getElementById("work").scrollIntoView({ behavior: "smooth" });
+  });
+</script>
+
+
+<div class="hero-content">
+  <div class="meowo">
+    <h3 class="hero-title"><span class="shine-text">Websites That Convert.<br/> Designs That Impress.</span></h3>
+  </div>
+  <div class="meowo">
+    <p class="hero-subtitle"><span class="shine-text">Web pages developed by Jude Williams</span></p>
+  </div>
+</div>
+
+      <div class="shine-overlay"></div>
+
+
+</section>
+  <div class="hero-fill"></div>
+
+
+
+
+
+
+<style>
+
+.shine-text {
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+  color: transparent; /* start transparent */
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.2) 40%,
+    rgba(255,255,255,1) 50%,
+    rgba(255,255,255,0.2) 60%,
+    rgba(255,255,255,0) 100%
+  );
+  background-size: 200%;
+  background-repeat: no-repeat;
+  background-position: -150% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
+  animation: 
+    shineText 2s ease-in-out forwards,
+    fadeInColor 1.5s ease-out 1.5s forwards;
+}
+
+
+
+
+
+@keyframes shineText {
+  0% {
+    background-position: -300% 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 70% 0;
+  }
+}
+/* Animate 'color' instead of -webkit-text-fill-color */
+@keyframes fadeInColor {
+  from {
+    color: transparent;
+  }
+  to {
+    color: white;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* General wrapper for masking */
+.shine-wrapper,
+.hero-shape {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-wrapper::before,
+.hero-shape::before {
+  content: "";
+  position: absolute;
+  top: -120%;   /* a bit more top to allow blur spread */
+  left: -160%;  /* moved further left for smoother entrance */
+  width: 220%;  /* wider to stretch gradient */
+  height: 140%; /* taller to help the blur */
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0.1) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(15deg) translateX(-150%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0; /* hidden initially */
+  animation: shineMove 3s ease-in-out forwards;
+  filter: blur(3px); /* slightly stronger blur for smoothness */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.arrow5{
+	width: 150px;
+	height: 50px;
+	background-color: transparent;
+	animation: slideUp5 0.5s ease-out forwards 2.3s;
+	bottom: -95vh;
+	position: relative;
+	opacity: 0;
+	z-index: 100000;
+margin: 0 auto;	
+justify-content: center;
+text-transform: uppercase;
+font-family: 'Raleway', sans-serif;
+letter-spacing: 2.5;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrow5:hover {
+  transform: scale(1.05);
+}
+.arrow5txt{
+  text-align: center;
+}
+.arrow5arrow{
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  color: rgba(255, 255, 255)!important;
+}
+
+
+
+
+
+.hero-fill {
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  width: 100%;
+  height: 150px; /* or however much space you want to fill */
+  background: rgba(255, 255, 255, 0.05); /* your theme color */; /* match this to your triangle color */
+  z-index: 0;
+}
+/* === Hero Section === */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+  z-index: 5;
+}
+
+/* === Triangular Elements === */
+.hero-shape {
+  position: absolute;
+  width: 100%;
+  height: 25vh;
+  background: rgba(255, 255, 255, 0.05); /* your theme color */
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 0;
+}
+
+.top-triangle {
+  top: -25vh;
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+.bottom-triangle {
+  bottom: -25vh;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%); /* flipped triangle */
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+/* === Hero Text === */
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10vw;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: textEnter 0.5s ease-out forwards 0.1s;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  opacity: 0.8;
+  font-weight: 200;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+}
+
+@media (max-width: 500px) {
+.hero-title{
+	font-size: 2rem;
+}
+.hero-subtitle{
+	font-size: 0.8rem;
+}
+
+.hero-fill{
+	display: none;
+}
+
+}
+
+/* === Animations === */
+@keyframes slideDown {
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes textEnter {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideUp5 {
+  to {
+    bottom: -85vh;
+    opacity: 1;
+  }
+}
+</style>	
+
+
+<!-- Banner 
+					<section id="banner" >
+						
+						<div class="inner">
+							<div class="logo"><span class="icon fa-gem"></span></div>
+							<h2>Fully Customizable and Crafted With Heart</h2>
+		<p></p>
+								<p>Web pages developed by <a href="#">Jude Williams</a></p>
+						</div>
+					</section>-->
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+            						<!-- One -->
+							<section id="one" class="wrapper spotlight">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Improve Your Design</h2>
+<p>Every element, from layout to typography, is crafted to reflect your brands' unique identity. Every business deserves something unique - a design built around your story, your voice, and your audience.</p>
+
+										<a href="#" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two" class="wrapper alt spotlight style2">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Expand Your Reach</h2>
+<p>Using semantic SEO & schema markup, every site is built to attract from outside and engage from within. Stand out in search results, draw in the right visitors, and turn reach into real results.</p>
+
+										<a href="#" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three" class="wrapper spotlight style3">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Facilitate Quality & Professionalism</h2>
+<p>Building a website that reflects your commitment to quality and professionalism is no small feat. I create seamless, polished sites that can help any business stand out and make a strong, confident impression.</p>
+<a href="#" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
+					</section>
+				<!-- Features (Four) -->
+
+<div id="work"></div>
+
+
+
+							<section id="four" class="wrapper alt style1">
+								<div class="inner">
+									<h2 class="major">Turn Visitors Into Buyers</h2>
+											<p>Showcase your best-selling products with purpose. This isn’t just a gallery, it’s a tool: designed to drive clicks and boost conversions. Every image, title, and description links directly to your shop, helping customers not only see what you offer, but enticing them to take action. Fully customizable and mobile-ready, it is fully responsive to user device size & touch.</p>
+														<section class="features">	
+										<article>
+											<a href="generic.html" class="image"><img src="images/swater.jpg" alt="" /></a>
+											<h3 class="major">Signature Apparel</h3>
+											<p>Built for comfort, branded for impact. Highlight your most popular apparel with engaging images and direct links to checkout, ideal for turning casual browsers into loyal customers.</p>
+											<a href="generic.html" class="special">Learn more</a>
+										</article>
+										<article>
+											<a href="generic.html" class="image"><img src="images/Tceramic.jpg" alt="" /></a>
+											<h3 class="major">Handcrafted Ceramics</h3>
+											<p>Showcase artisan quality with product photos that speak for themselves. Ideal for spotlighting items that resonate visually, this layout helps you drive attention straight to your featured catalog.</p>
+											<a href="generic.html" class="special">Learn more</a>
+										</article>
+										<article>
+											<a href="generic.html" class="image"><img src="images/Tessentials.jpg" alt="" /></a>
+											<h3 class="major">Health & Lifestyle Essentials</h3>
+											<p>Promote bundles or bestsellers with smart copy and responsive design. This section lets your customers understand the benefits at a glance, and act with a single tap.</p>
+											<a href="generic.html" class="special">Learn more</a>
+										</article>
+										<article>
+											<a href="generic.html" class="image"><img src="images/Theadphones.jpg" alt="" /></a>
+											<h3 class="major">Cutting-Edge Technology</h3>
+											<p>Position premium products front and center with rich media support and CTA-ready layout. This space isn’t just for features — it’s for driving real purchasing decisions.</p>
+											<a href="generic.html" class="special">Learn more</a>
+										</article>
+									</section>
+									<ul class="actions">
+										<li><a href="generic.html" class="button">Browse All</a></li>
+									</ul>
+								</div>
+							</section>
+
+		<!-- Newsletter CTA-->
+<section class="newsletter-section">
+
+  <h2 class="newsletter-title major">Building a Community?</h2>
+  <p class="newsletter-subtitle">Seamless, clean, and responsive forms that don’t feel like another annoying business pop-up. Turn your visitors’ interest into action without breaking the flow or focus of your page. Fully customizable and designed to grow your community.</p>
+  <form id="newsletterForm" class="newsletter-form" novalidate autocomplete="email">
+    <div class="form-message-container">
+      <p class="form-message" id="formMessage" aria-live="polite" role="alert"></p>
+    </div>
+    <div class="form-wrapper">
+
+      <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="email" required aria-label="Email address" class="email-input custom"/>
+      <button type="submit" class="submit-button">
+ <i class="fas fa-check"></i>
+
+	  </button>
+    </div>
+	<input type="text" name="website" id="website" style="display: none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  </form>
+</section>
+<style>
+
+
+
+input, button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  line-height: 1;
+}
+
+.newsletter-section {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3em 1em;
+  text-align: center;
+  color: white;
+}
+
+
+.newsletter-subtitle {
+  font-size: 1em;
+  color: #999;
+  margin-bottom: 1.5em;
+}
+.testimonial-subtitle {
+  font-size: 1em;
+  color: white;
+  margin-bottom: 2.5em;
+
+}
+
+/* Form wrapper as flex container */
+.form-wrapper {
+  display: flex;
+  border: none;
+  border-radius: 0.375em;
+  overflow: hidden;
+  height: 3em; /* fixed height */
+}
+
+
+.submit-button {
+  flex-shrink: 0;
+  width: 5.5em;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.35) !important;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.4s ease, color 0.4s ease;
+  line-height: 3em;
+  text-align: center;
+  user-select: none;
+  height: 100%;
+  text-transform:none !important;
+ border: none;
+  border-radius: 0 0.375em 0.375em 0;
+  padding: 0;
+  font-family: "Source Sans Pro", sans-serif;
+
+  position: relative;
+overflow: hidden;
+}
+
+/*.submit-button:hover {
+  background-color: rgba(255, 255, 255, 0.025);
+}*/
+.submit-button:active {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+
+
+/* shimmer on hover */
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Animate on hover */
+.submit-button:hover::before {
+  animation: shimmer 0.6s ease forwards;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  50% {
+    left: 50%;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    left: 150%;
+    opacity: 0;
+  }
+}
+
+
+
+
+/* Input field */
+.email-input.custom {
+  height: 100%;
+  flex-grow: 1;
+  padding: 0 1em;
+  background: transparent; /* slightly lighter than before */
+  color: #fff;
+  font-size: 1rem;
+  line-height: 3em;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-right: none !important;
+  border-radius: 0.375em 0 0 0.375em !important;
+  display: block;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  transition: background 0.5s ease, border 0.5s ease, outline 0.5s ease;
+}
+
+.email-input.custom:hover {
+  background-color: rgba(255, 255, 255, 0.025);
+}
+.email-input.custom:active {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+.email-input.custom:focus {
+  border: 2px solid rgba(255, 255, 255, 0.15) !important;
+   background-color: rgba(255, 255, 255, 0.075);
+}
+
+.email-input.custom::placeholder {
+  color: #f8f8f8; /* same as button text */
+  font-weight: 600; 
+  font-family: "Source Sans Pro", sans-serif;
+  opacity: 1;
+  letter-spacing: 0.05em; /* or adjust to match button */
+}
+
+
+/* Message container */
+.form-message-container {
+  height: 2.25em;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.form-message {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  font-size: 0.95em;
+  text-align: center;
+  pointer-events: none;
+
+
+  font-weight: 600; 
+  font-family: "Source Sans Pro", sans-serif;
+  letter-spacing: 0.05em; /* or adjust to match button */
+
+}
+
+.form-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-wrapper {
+    flex-direction: row;  /* keep side-by-side */
+    height: 3em;          /* keep fixed height */
+  }
+
+  .email-input.custom {
+    flex-grow: 1;           /* take remaining space */
+    min-width: 0;           /* prevent overflowing */
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 0.375em 0 0 0.375em !important;
+    border-right: none !important;
+  }
+
+  .submit-button {
+    flex-shrink: 0;         /* prevent shrinking */
+    width: 5.5em;           /* fixed button width */
+    height: 100%;           /* match wrapper height */
+    border-radius: 0 0.375em 0.375em 0;
+  }
+}
+
+
+.your-glass-element {
+  background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0)),
+  rgba(255, 255, 255, 0.15); /* semi-transparent, shiny, mirror white */
+
+  backdrop-filter: blur(10px);           /* blurs background behind */
+  -webkit-backdrop-filter: blur(10px);   /* for Safari support */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);  /* subtle shadow for depth */
+}
+
+
+
+</style>
+
+
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('newsletterForm');
+  const input = document.getElementById('emailInput');
+  const message = document.getElementById('formMessage');
+  const honeypot = document.getElementById('website');
+
+  let messageTimeout;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    clearTimeout(messageTimeout);
+    hideMessage(); // Reset before showing new one
+
+    if (!navigator.onLine) {
+      showMessage('Connection error. Please try again.', '#ff6666');
+      return;
+    }
+
+    if (honeypot.value !== '') return;
+
+    const email = input.value.trim();
+
+    if (email === '') {
+      showMessage('Email is required.', '#ff6666');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showMessage('Please enter a valid email address.', '#ff6666');
+      return;
+    }
+
+    showMessage('Success! Thank you for joining.', '#66ff99');
+    input.value = '';
+  });
+
+  function showMessage(text, color) {
+    message.textContent = text;
+    message.style.color = color;
+    message.classList.add('show');
+
+    messageTimeout = setTimeout(() => {
+      hideMessage();
+    }, 4000); // auto-hide after 4s
+  }
+
+  function hideMessage() {
+    message.classList.remove('show');
+  }
+});
+</script>
+<style>
+/* Error and success colors */
+.form-message.error {
+  color: #ff6666 !important;
+}
+
+.form-message.success {
+  color: #66ff99 !important;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+		<!-- Testimonials -->
+		<section id="testimonials" class="wrapper style2">
+  <div class="inner">
+    <h2 class="major">Prove Why Shoppers Choose You</h2>
+	<p class="testimonial-subtitle">
+	Testimonials and ratings aren’t just social proof - they’re business assets. Highlight your real results and build trust using clean layouts that are built perfectly to fit your brand. Designed to guide attention, build confidence, and reduce hesitation where it matters.
+</p>
+
+    <div class="carousel-container">
+      <button class="carousel-btn left">&#10094;</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <!-- testimonial elements -->
+          <div class="testimonial">
+            <img src="images/pfp.png" alt="User 1" />
+            <h3>Jane Doe</h3>
+            <p class="rating">★★★★★</p>
+            <p>"Absolutely amazing service and stunning results. Highly recommend!"</p>
+          </div>
+          <div class="testimonial">
+            <img src="images/pfp.png" alt="User 2" />
+            <h3>John Smith</h3>
+            <p class="rating">★★★★☆</p>
+            <p>"Very professional, quick turnaround, and great design."</p>
+          </div>
+          <div class="testimonial">
+            <img src="images/pfp.png" alt="User 3" />
+            <h3>Alice Brown</h3>
+            <p class="rating">★★★★★</p>
+            <p>"Loved the personal touch and attention to detail. Will be back!"</p>
+          </div>
+          <div class="testimonial">
+            <img src="images/pfp.png" alt="User 4" />
+            <h3>Michael Green</h3>
+            <p class="rating">★★★★★</p>
+            <p>"Top-tier design and excellent customer care. Highly appreciated!"</p>
+          </div>
+          <div class="testimonial">
+            <img src="images/pfp.png" alt="User 5" />
+            <h3>Sara White</h3>
+            <p class="rating">★★★★☆</p>
+            <p>"Delivered what we asked for and more. Great job!"</p>
+          </div>
+          <div class="testimonial">
+            <img src="images/pfp.png" alt="User 6" />
+            <h3>David Black</h3>
+            <p class="rating">★★★★★</p>
+            <p>"Fast, clean, professional. Couldn't ask for better."</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn right">&#10095;</button>
+    </div>
+  </div>
+		</section>
+
+
+		<script>
+  (() => {
+    const track = document.querySelector('.carousel-track');
+    const leftBtn = document.querySelector('.carousel-btn.left');
+    const rightBtn = document.querySelector('.carousel-btn.right');
+    let testimonials = Array.from(track.children);
+
+    let visibleCount = 3;
+    let index;
+    let testimonialWidth;
+    let isTransitioning = false;
+    let autoScrollTimer;
+    let interactionTimeout;
+
+    function updateVisibleCount() {
+      const width = window.innerWidth;
+      if (width <= 600) visibleCount = 1;
+      else if (width <= 900) visibleCount = 2;
+      else visibleCount = 3;
+    }
+
+    function cloneSlides() {
+      testimonials.filter(t => t.classList.contains('clone')).forEach(clone => clone.remove());
+      testimonials = Array.from(track.children);
+
+      const slidesCount = testimonials.length;
+      const firstClones = testimonials.slice(0, visibleCount).map(node => {
+        const clone = node.cloneNode(true);
+        clone.classList.add('clone');
+        return clone;
+      });
+      const lastClones = testimonials.slice(slidesCount - visibleCount).map(node => {
+        const clone = node.cloneNode(true);
+        clone.classList.add('clone');
+        return clone;
+      });
+
+      firstClones.forEach(clone => track.appendChild(clone));
+      lastClones.reverse().forEach(clone => track.insertBefore(clone, track.firstChild));
+
+      testimonials = Array.from(track.children);
+    }
+
+    function getTestimonialWidth() {
+      if (testimonials.length === 0) return 0;
+      const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+      return testimonials[0].getBoundingClientRect().width + gap;
+    }
+
+    function setTrackPosition(animate = true) {
+      track.style.transition = animate ? 'transform 0.5s ease' : 'none';
+      const offset = -index * testimonialWidth;
+      track.style.transform = `translateX(${offset}px)`;
+    }
+
+    function moveToIndex(newIndex) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      index = newIndex;
+      setTrackPosition(true);
+    }
+
+    function onTransitionEnd() {
+      isTransitioning = false;
+      const totalSlides = testimonials.length;
+      if (index >= totalSlides - visibleCount) {
+        index = visibleCount;
+        setTrackPosition(false);
+      } else if (index < visibleCount) {
+        index = totalSlides - 2 * visibleCount;
+        setTrackPosition(false);
+      }
+    }
+
+    function handleInteraction() {
+      clearTimeout(interactionTimeout);
+      clearInterval(autoScrollTimer);
+      interactionTimeout = setTimeout(() => {
+        startAutoScroll();
+      }, 5000); // Pause auto-scroll for 5 seconds
+    }
+
+    function startAutoScroll() {
+      autoScrollTimer = setInterval(() => {
+        if (!isTransitioning) {
+          moveToIndex(index + 1);
+        }
+      }, 5000);
+    }
+
+    leftBtn.addEventListener('click', () => {
+      if (isTransitioning) return;
+      moveToIndex(index - 1);
+      handleInteraction();
+    });
+
+    rightBtn.addEventListener('click', () => {
+      if (isTransitioning) return;
+      moveToIndex(index + 1);
+      handleInteraction();
+    });
+
+    track.addEventListener('transitionend', onTransitionEnd);
+
+    let startX = 0;
+    let isDragging = false;
+
+    track.addEventListener('touchstart', e => {
+      if (isTransitioning) return;
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+
+    track.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      const currentX = e.touches[0].clientX;
+      const deltaX = currentX - startX;
+      // Optional: visually drag
+      // track.style.transform = `translateX(${ -index * testimonialWidth + deltaX}px)`;
+    });
+
+    track.addEventListener('touchend', e => {
+      if (!isDragging) return;
+      const endX = e.changedTouches[0].clientX;
+      const deltaX = endX - startX;
+      const threshold = testimonialWidth / 4;
+
+      if (deltaX > threshold) {
+        moveToIndex(index - 1);
+      } else if (deltaX < -threshold) {
+        moveToIndex(index + 1);
+      } else {
+        setTrackPosition(true);
+      }
+      isDragging = false;
+      handleInteraction();
+    });
+
+    function init() {
+      updateVisibleCount();
+      cloneSlides();
+      testimonialWidth = getTestimonialWidth();
+      index = visibleCount;
+      setTrackPosition(false);
+      clearInterval(autoScrollTimer);
+      startAutoScroll();
+    }
+
+    window.addEventListener('resize', init);
+    window.addEventListener('load', init);
+  })();
+		</script>
+
+
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<h2 class="major">Get in touch</h2>
+							<p>Recieve actual feedback from anybody who comes across your site. Using inviting design and maximizing availability, hearing back from visitors or customers becomes far more likely. Most people interested in your business may not be able to reach you in person - so optimizing your page for online communication is a necessity. </p>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="email" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="4"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+							<ul class="contact">
+								<li class="icon solid fa-home">
+									Untitled Inc<br />
+									1234 Somewhere Road Suite #2894<br />
+									Nashville, TN 00000-0000
+								</li>
+								<li class="icon solid fa-phone">(000) 000-0000</li>
+								<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+								<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
+								<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
+								<li class="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
+							</ul>
+						<ul class="copyright">
+                       <li>&copy; Williams Inc. All rights reserved.</li>
+                       <li>Design: <a>Jude Williams</a></li>
+                       					   <li>Contact: <a target="_blank" href="mailto:64judew64@gmail.com">@64judew64@gmail.com</a></li>
+
+                   </ul>
+               </div>
+           </section>
+<style>
+	.copyright{
+		font-family: 'Raleway', sans-serif;
+		font-weight: 200;
+		text-transform: uppercase;
+	}
+</style>
+			</div>
+
+
+
+
+
+
+
+
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
