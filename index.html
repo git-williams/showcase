@@ -366,12 +366,71 @@ letter-spacing: 2.5;
 						</div>
 					</section>-->
 
+
+
+<style>
+/* The container */
+.abc {
+  overflow: hidden;           /* Hide anything outside the circle */
+  position: relative;
+
+}
+
+/* The image inside the container */
+.abc img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;          /* Fill the circle without distortion */
+  object-position: center;    /* Center the image */
+  display: block;             /* Remove inline spacing */
+}
+
+/* Tablet screens: shrink to 200px */
+@media (max-width: 1024px) {
+  .abc img {
+    width: 225px;
+    height: 225px;
+  }
+}
+
+/* Mobile screens: shrink to 150px */
+@media (max-width: 600px) {
+  .abc img {
+    width: 150px;
+    height: 150px;
+  }
+}
+</style>
+
+
+
+
+
 				<!-- Wrapper -->
 					<section id="wrapper">
             						<!-- One -->
 							<section id="one" class="wrapper spotlight">
 								<div class="inner">
-									<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+				<a href="#" class="image abc"><img src="images/reach.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Expand Your Reach</h2>
+<p>Using semantic SEO & schema markup, every site is built to attract from outside and engage from within. Stand out in search results, draw in the right visitors, and turn reach into real results.</p>
+                  
+										<a href="#" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two" class="wrapper alt spotlight style2">
+								<div class="inner">
+									<!--<a href="#" class="image abc"><img src="images/reach.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Expand Your Reach</h2>
+<p>Using semantic SEO & schema markup, every site is built to attract from outside and engage from within. Stand out in search results, draw in the right visitors, and turn reach into real results.</p>
+                  -->
+
+                  <a href="#" class="image abc"><img src="images/code2.jpg" alt="" /></a>
 									<div class="content">
 										<h2 class="major">Improve Your Design</h2>
 <p>Every element, from layout to typography, is crafted to reflect your brands' unique identity. Every business deserves something unique - a design built around your story, your voice, and your audience.</p>
@@ -381,23 +440,10 @@ letter-spacing: 2.5;
 								</div>
 							</section>
 
-						<!-- Two -->
-							<section id="two" class="wrapper alt spotlight style2">
-								<div class="inner">
-									<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Expand Your Reach</h2>
-<p>Using semantic SEO & schema markup, every site is built to attract from outside and engage from within. Stand out in search results, draw in the right visitors, and turn reach into real results.</p>
-
-										<a href="#" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
-
 						<!-- Three -->
 							<section id="three" class="wrapper spotlight style3">
 								<div class="inner">
-									<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+									<a href="#" class="image abc"><img src="images/quality.jpg" alt="" /></a>
 									<div class="content">
 										<h2 class="major">Facilitate Quality & Professionalism</h2>
 <p>Building a website that reflects your commitment to quality and professionalism is no small feat. I create seamless, polished sites that can help any business stand out and make a strong, confident impression.</p>
@@ -790,37 +836,37 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="carousel-track">
           <!-- testimonial elements -->
           <div class="testimonial">
-            <img src="images/pfp.jpg" alt="User 1" />
+            <img src="images/pfp.png" alt="User 1" />
             <h3>Jane Doe</h3>
             <p class="rating">★★★★★</p>
             <p>"Absolutely amazing service and stunning results. Highly recommend!"</p>
           </div>
           <div class="testimonial">
-            <img src="images/pfp.jpg" alt="User 2" />
+            <img src="images/pfp.png" alt="User 2" />
             <h3>John Smith</h3>
             <p class="rating">★★★★☆</p>
             <p>"Very professional, quick turnaround, and great design."</p>
           </div>
           <div class="testimonial">
-            <img src="images/pfp.jpg" alt="User 3" />
+            <img src="images/pfp.png" alt="User 3" />
             <h3>Alice Brown</h3>
             <p class="rating">★★★★★</p>
             <p>"Loved the personal touch and attention to detail. Will be back!"</p>
           </div>
           <div class="testimonial">
-            <img src="images/pfp.jpg" alt="User 4" />
+            <img src="images/pfp.png" alt="User 4" />
             <h3>Michael Green</h3>
             <p class="rating">★★★★★</p>
             <p>"Top-tier design and excellent customer care. Highly appreciated!"</p>
           </div>
           <div class="testimonial">
-            <img src="images/pfp.jpg" alt="User 5" />
+            <img src="images/pfp.png" alt="User 5" />
             <h3>Sara White</h3>
             <p class="rating">★★★★☆</p>
             <p>"Delivered what we asked for and more. Great job!"</p>
           </div>
           <div class="testimonial">
-            <img src="images/pfp.jpg" alt="User 6" />
+            <img src="images/pfp.png" alt="User 6" />
             <h3>David Black</h3>
             <p class="rating">★★★★★</p>
             <p>"Fast, clean, professional. Couldn't ask for better."</p>
