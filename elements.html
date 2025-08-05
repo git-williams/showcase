@@ -386,6 +386,8 @@ Please note that I respond during business hours only, unless we’ve made other
 											</div>
 										</div>
 		<h2 class="major">Client Packages</h2>
+		<p>
+If you have any questions, would like to request revisions, explore custom packages, or need more information, feel free to reach out. You can contact me by email, phone, or simply by filling out the form & I’ll get back to you as soon as possible.		</p>
 
 						<!--	<h3>Table of Contents</h3>
 												<ul class="alt">
@@ -594,21 +596,100 @@ color: #999;
   <div class="package-carousel">
     <section class="carousel-section">
       <h2 class="carousel-title">Renovation</h2>
-	  <p class="centered">Best for clients that already have an existing site. </p>
-      <div class="carousel-container" id="renovation">
-        <!-- Cards will be injected here -->
+      <p class="centered">Best for clients that already have an existing site.</p>
+      <div class="carousel-wrapper">
+        <div class="arrow left" data-target="renovation">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
+
+        </div>
+        <div class="carousel-container" id="renovation">
+          <!-- Cards will be injected here -->
+        </div>
+        <div class="arrow right" data-target="renovation">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+</svg>
+
+        </div>
       </div>
     </section>
 
     <section class="carousel-section">
       <h2 class="carousel-title">Full Build</h2>
-	  	  <p class="centered">Best for clients that need a site built from scratch. </p>
+      <p class="centered">Best for clients that need a site built from scratch.</p>
+      <div class="carousel-wrapper">
+        <div class="arrow left" data-target="fullBuild">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
 
-      <div class="carousel-container" id="fullBuild">
-        <!-- Cards will be injected here -->
+
+        </div>
+        <div class="carousel-container" id="fullBuild">
+          <!-- Cards will be injected here -->
+        </div>
+        <div class="arrow right" data-target="fullBuild">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+</svg>
+
+        </div>
       </div>
     </section>
   </div>
+
+  <style>
+    .carousel-wrapper {
+      position: relative;
+    }
+
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      background: transparent;
+	  color: white !important;
+      border-radius: 50%;
+      padding: 8px;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+	  z-index: 99999990999988989989898998989;
+	  height: 50px;
+	  width: 50px;
+    }
+	.arrow svg {
+  color: white;
+}
+.arrow svg path {
+  stroke: white !important;
+}
+
+    .arrow.left {
+      left: -35px;
+    }
+
+    .arrow.right {
+      right: -35px;
+    }
+
+    .arrow.visible {
+      opacity: 1;
+      pointer-events: auto;
+	  color: white !important;
+    }
+
+    @media (min-width: 901px) {
+      .arrow {
+        display: none;
+      }
+    }
+  </style>
 
   <script>
     const packages = {
@@ -616,7 +697,7 @@ color: #999;
         {
           title: "Minimal",
           price: "$299–$599",
-          description: "A fast, clean one-page site to establish a solid online presence.",
+          description: "A fast, clean one-page site best for establishing a solid online presence.",
           features: [
             "One-page responsive site",
             "Contact info & form",
@@ -634,7 +715,8 @@ color: #999;
             "Full brand styling",
             "Feature integrations",
             "Conversion-focused design",
-            "SEO "
+            "Heavy SEO",
+			"2 revisions"
           ]
         },
         {
@@ -712,7 +794,6 @@ color: #999;
 
     function updateFocusedCard(container) {
       const wrappers = container.querySelectorAll(".card-wrapper");
-      let center = container.scrollLeft + container.offsetWidth / 2;
       let closest = null;
       let closestDistance = Infinity;
 
@@ -729,38 +810,77 @@ color: #999;
 
       wrappers.forEach(w => w.classList.remove("focused"));
       if (closest) closest.classList.add("focused");
+
+      const isMiddleFocused = closest === wrappers[1];
+      const parent = container.parentElement;
+      const arrows = parent.querySelectorAll(".arrow");
+
+      if (window.innerWidth <= 900) {
+        arrows.forEach(arrow => {
+          arrow.classList.toggle("visible", isMiddleFocused);
+        });
+      }
     }
 
     function enableScrollFocusBehavior(id) {
       const container = document.getElementById(id);
       if (!container) return;
+
+      let scrollTimeout;
       container.addEventListener("scroll", () => {
-        if (window.innerWidth <= 900) {
-          window.requestAnimationFrame(() => updateFocusedCard(container));
-        }
+        if (window.innerWidth > 900) return;
+
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+
+        scrollTimeout = setTimeout(() => {
+          updateFocusedCard(container);
+        }, 100); // debounce for smoother performance
       });
     }
-function scrollToMiddleCard(id) {
-  const container = document.getElementById(id);
-  if (!container || window.innerWidth > 900) return;
 
-  // Ensure layout is ready before scrolling
-  setTimeout(() => {
-    const wrappers = container.querySelectorAll(".card-wrapper");
-    const middleCard = wrappers[1];
-    if (!middleCard) return;
+    function scrollToMiddleCard(id) {
+      const container = document.getElementById(id);
+      if (!container || window.innerWidth > 900) return;
 
-    const scrollOffset = middleCard.offsetLeft - (container.offsetWidth / 2 - middleCard.offsetWidth / 2);
-    container.scrollTo({ left: scrollOffset, behavior: "instant" }); // or "smooth"
-  }, 0);
-}
+      setTimeout(() => {
+        const wrappers = container.querySelectorAll(".card-wrapper");
+        const middleCard = wrappers[1];
+        if (!middleCard) return;
 
-scrollToMiddleCard("fullBuild");
-scrollToMiddleCard("renovation");
+        const scrollOffset = middleCard.offsetLeft - (container.offsetWidth / 2 - middleCard.offsetWidth / 2);
+        container.scrollTo({ left: scrollOffset, behavior: "auto" });
+
+        updateFocusedCard(container); // Trigger arrow visibility
+      }, 0);
+    }
+
+    function initArrows(id) {
+      const container = document.getElementById(id);
+      const parent = container.parentElement;
+      const leftArrow = parent.querySelector(".arrow.left");
+      const rightArrow = parent.querySelector(".arrow.right");
+
+      if (window.innerWidth > 900) return;
+
+      leftArrow.addEventListener("click", () => {
+        container.scrollBy({ left: -200, behavior: "smooth" });
+      });
+      rightArrow.addEventListener("click", () => {
+        container.scrollBy({ left: 200, behavior: "smooth" });
+      });
+    }
+
+    // Initialize
+    scrollToMiddleCard("fullBuild");
+    scrollToMiddleCard("renovation");
 
     enableScrollFocusBehavior("fullBuild");
     enableScrollFocusBehavior("renovation");
+
+    initArrows("fullBuild");
+    initArrows("renovation");
   </script>
+</body>
 
 
 
