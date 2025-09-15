@@ -180,7 +180,7 @@
 <header class="site-header" role="banner" aria-label="Main header">
   <div class="nav-row">
     <div class="brand">
-      <a class="back-btn" href="#" aria-label="Back to gallery">
+      <a class="back-btn" href="index.html" aria-label="Back to gallery">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Back
       </a>
@@ -376,7 +376,7 @@
       <div class="why reveal">
         <div>
           <h2 id="why-title">Why choose me?</h2>
-          <p class="muted">I design the website experience to convert: clear benefits, trust markers, and simple ways to buy.</p>
+          <p class="muted">I design the website experience to convert: clear benefits, trust markers, and simple ways to get in touch.</p>
 
           <div class="bullets" style="margin-top:18px">
             <div class="bullet reveal">
@@ -417,7 +417,7 @@
   <section id="testimonials" class="section" aria-labelledby="testimonials-title">
     <div class="wrap">
       <h2 id="testimonials-title" class="reveal">Build a relationship with your customers</h2>
-      <p class="muted reveal" style="max-width:700px">The foundation of commerce is trust. I build websites that represents trust in you & your service.</p>
+      <p class="muted reveal" style="max-width:700px">The foundation of commerce is trust. I build websites that represent trust in you & your service.</p>
 
       <div style="height:18px"></div>
       <div class="testimonials reveal">
@@ -487,12 +487,12 @@
   <section class="wrap">
     <div class="cta-banner reveal">
       <div>
-        <h3>Ready to fix your problem? Get a free, no-commitment quote now.</h3>
+        <h3>Ready to fix your website? Reach out to me.</h3>
         <p style="margin-top:6px">Quick scheduling, clear pricing, and guarantee on all work.</p>
       </div>
       <div style="display:flex;gap:12px">
         <button class="btn btn-outline" onclick="scrollToSection('testimonials')">See reviews</button>
-        <button class="btn btn-primary" onclick="openContact()">Request Service</button>
+        <button class="btn btn-primary" onclick="openContact()">Reach Out</button>
       </div>
     </div>
   </section>
@@ -502,8 +502,8 @@
     <div class="wrap">
       <div class="contact">
         <div>
-          <h2 id="contact-title" class="reveal">Get in touch — request a quote</h2>
-          <p class="muted reveal">Fill out the form and we'll respond with an estimate and ETA. For emergencies call <a href="tel:+18005550123">+1 (800) 555-0123</a>.</p>
+          <h2 id="contact-title" class="reveal">Getting in touch - easy as ever</h2>
+          <p class="muted reveal">Business owners can underestimate the value of feedback. You can get the upperhand by not only making it readily available, but also encouraging it.</p>
 
           <div style="height:12px"></div>
 
@@ -549,7 +549,7 @@
           </div>
           <div style="display:flex;gap:8px;align-items:center">
             <button class="btn btn-primary" type="submit">Request Quote</button>
-            <button class="btn btn-outline" type="button" onclick="openContact()">Call: +1 (800) 555-0123</button>
+            <button class="btn btn-outline" type="button"">Call: +1 (800) 000-0000</button>
             <div style="flex:1"></div>
             <div class="muted" style="font-size:12px">We reply within one business hour.</div>
           </div>
@@ -560,9 +560,9 @@
 
   <footer class="wrap footer" role="contentinfo">
     <div>
-      <div style="font-weight:800">ReliablePro Services</div>
-      <div class="muted">1234 Service Lane, Chicago, IL</div>
-      <div class="muted">© <span id="year"></span> ReliablePro — Demo</div>
+      <div style="font-weight:800">Baseline — For the business-minded</div>
+      <div class="muted">1234 Somewhere Lane, Dallas, TX</div>
+      <div class="muted">© <span id="year"></span> Basline</div>
     </div>
 
     <div style="display:flex;gap:10px;align-items:center">
@@ -585,7 +585,7 @@
       <strong>Request Service</strong>
       <button onclick="closeOverlay()" style="border:0;background:transparent;font-weight:700;cursor:pointer">✕</button>
     </div>
-    <p class="muted" style="margin-top:8px">Quick estimate form — or call <a href="tel:+18005550123">+1 (800) 555-0123</a></p>
+    <p class="muted" style="margin-top:8px">Quick estimate form — or call +1 (800) 000-0000</p>
     <form id="miniForm" onsubmit="submitMiniForm(event)" style="display:grid;gap:8px;margin-top:8px">
       <input class="input" name="mname" placeholder="Full name" required />
       <input class="input" name="mcontact" placeholder="Phone or email" required />
@@ -641,13 +641,13 @@
   // form handlers (mock)
   function submitForm(e){
     e.preventDefault();
-    alert('Thanks — request received. (Demo form — no real submission)');
+    alert('Thank you! Your completely fake request has been recieved.');
     e.target.reset();
     window.scrollTo({top:0, behavior:'smooth'});
   }
   function submitMiniForm(e){
     e.preventDefault();
-    alert('Quick request received. We will contact you shortly. (Demo)');
+    alert('Thank you! Fake request received. We will not contact you shortly.');
     closeOverlay();
   }
 
