@@ -498,14 +498,15 @@
         <p style="margin-top:6px">Quick scheduling, clear pricing, and guarantee on all work.</p>
       </div>
       <div style="display:flex;gap:12px">
-        <button class="btn btn-outline testy" onclick="scrollToSection('testimonials')">See reviews</button>
-        <button class="btn btn-primary" onclick="openContact()">Reach Out</button>
+        <button class="btn btn-outline testy hover" onclick="scrollToSection('testimonials')">See reviews</button>
+        <button class="btn btn-primary hover" onclick="openContact()">Reach Out</button>
       </div>
     </div>
   </section>
   <style>
     .testy{
       background-color:var(--brand) !important;
+      color: #fff !important;
     }
   </style>
 
@@ -560,8 +561,8 @@
             <textarea class="input" rows="4" name="notes" placeholder="Describe the issue (optional)"></textarea>
           </div>
           <div style="display:flex;gap:8px;align-items:center">
-            <button class="btn btn-primary" type="submit">Request Quote</button>
-            <button class="btn btn-outline" type="button"">Call: +1 (800) 000-0000</button>
+            <button class="btn btn-primary hover" type="submit">Request Quote</button>
+            <button class="btn btn-outline hover" type="button"">Call: +1 (800) 000-0000</button>
             <div style="flex:1"></div>
             <div class="muted" style="font-size:12px">We reply within one business hour.</div>
           </div>
@@ -609,8 +610,8 @@
         <option>Installation / Other</option>
       </select>
       <div style="display:flex;gap:8px;justify-content:flex-end">
-        <button type="button" onclick="closeOverlay()" class="btn btn-outline">Cancel</button>
-        <button type="submit" class="btn btn-primary">Request</button>
+        <button type="button" onclick="closeOverlay()" class="btn btn-outline hover">Cancel</button>
+        <button type="submit" class="btn btn-primary hover">Request</button>
       </div>
     </form>
   </div>
