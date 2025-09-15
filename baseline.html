@@ -113,6 +113,12 @@
     display:grid;place-items:center;font-weight:800;color:var(--accent)
   }
 
+/* ==== Hover ==== */
+.hover:hover{
+  transform:translateY(-8px);box-shadow:0 16px 40px rgba(11,15,30,0.08)
+}
+  
+
   /* ===== Why choose us ===== */
   .why{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
   .why img{border-radius:12px;object-fit:cover;height:100%;width:100%}
@@ -222,8 +228,8 @@
             If you're looking for a professional, clean, and logical site to boost the quality of your service, you need a web designer that understands what you need.
 
           <div class="hero-ctas reveal" style="transition-delay:.12s">
-            <button class="btn btn-primary card" onclick="openContact()" title="Request a free quote">Get a Free Quote</button>
-            <a class="btn btn-outline card" title="Call now">Call Now</a>
+            <button class="btn btn-primary hover" onclick="openContact()" title="Request a free quote">Get a Free Quote</button>
+            <a class="btn btn-outline hover" title="Call now">Call Now</a>
           </div>
 
           <div class="trust-strip reveal" style="margin-top:20px;transition-delay:.18s">
