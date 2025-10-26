@@ -4027,7 +4027,7 @@ background: none;
   margin: 0 0 2em 3em;
 }
 
-/* Thin hard divider line top & bottom — keeps transitions crisp */
+/* Thin hard divider line top & bottom — keeps transitions crisp 
 .wrapper.spotlight::before,
 .wrapper.spotlight::after {
   content: "";
@@ -4038,17 +4038,17 @@ background: none;
   background: rgba(0,0,0,0.7);
   z-index: 3;
   pointer-events: none;
-}
+}*/
 
-/* top separator (visible at very top edge of shape) */
+/* top separator (visible at very top edge of shape) 
 .wrapper.spotlight::before {
   top: 0.5rem;
-}
+}*/
 
-/* bottom separator */
+/* bottom separator 
 .wrapper.spotlight::after {
   bottom: 0.5rem;
-}
+}*/
 
 /* =========================
    Section background images
