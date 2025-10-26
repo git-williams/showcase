@@ -3957,65 +3957,80 @@ background: none;
    Spotlight Sections — unified background image per section
    (Option 2 Implementation)
    ============================================================ */
-
-/* ---------- Shared Base Styles ---------- */
+/* Base spotlight wrapper */
 .wrapper.spotlight {
   position: relative;
-  color: #fff;
+  background: #000; /* fallback */
   overflow: hidden;
-
-  /* Single background image per section (placeholder) */
-  background-image: url("images/bag1.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Fallback tone behind image */
-  background-color: #000000;
 }
 
-/* Transparent triangular caps (keep shape, remove fill) */
-.wrapper.spotlight:before,
-.wrapper.spotlight:after {
+/* Triangular background effect */
+.wrapper.spotlight::before,
+.wrapper.spotlight::after {
   content: "";
   position: absolute;
   left: 0;
   width: 100%;
-  height: 6em;
-  background: transparent; /* no image fill */
-  z-index: 2;
-  pointer-events: none;
+  height: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
 }
 
-/* Triangles themselves still shape the section boundaries */
-.wrapper.spotlight:before {
-  top: -6em;
-  transform: scaleY(-1);
-}
-.wrapper.spotlight:after {
-  bottom: -6em;
+/* Top triangle */
+.wrapper.spotlight::before {
+  top: 0;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
 }
 
-/* Optional: crisp dark divider lines for "hard transition" */
-.wrapper.spotlight:before,
-.wrapper.spotlight:after {
-  box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000;
+/* Bottom triangle */
+.wrapper.spotlight::after {
+  bottom: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 
-/* ---------- Section Layout (unchanged) ---------- */
+/* --------------------------------------------- */
+/* STYLE 1 (example: dark / main) */
+.wrapper.spotlight {
+  background-color: #000000;
+}
+
+.wrapper.spotlight::before,
+.wrapper.spotlight::after {
+  background-image: url('images/triangle-bg1.jpg'); /* your image */
+}
+
+/* --------------------------------------------- */
+/* STYLE 2 (next section, different image) */
+.wrapper.spotlight.style2 {
+  background-color: #0d0d0d;
+}
+
+.wrapper.spotlight.style2::before,
+.wrapper.spotlight.style2::after {
+  background-image: url('images/triangle-bg2.jpg'); /* your second image */
+}
+
+/* --------------------------------------------- */
+/* STYLE 3 (third section, another unique image) */
+.wrapper.spotlight.style3 {
+  background-color: #000000;
+}
+
+.wrapper.spotlight.style3::before,
+.wrapper.spotlight.style3::after {
+  background-image: url('images/triangle-bg3.jpg'); /* your third image */
+}
+
+/* --------------------------------------------- */
+/* Internal layout (unchanged from your version) */
 .wrapper.spotlight .inner {
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
   display: flex;
-  -moz-align-items: center;
-  -webkit-align-items: center;
-  -ms-align-items: center;
   align-items: center;
-  -moz-flex-direction: row;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
+  position: relative;
+  z-index: 1; /* keep content above triangles */
 }
 
 .wrapper.spotlight .image {
@@ -4023,7 +4038,7 @@ background: none;
   margin: 0 3em 2em 0;
   width: 22em;
   overflow: hidden;
-  -ms-flex: 1;
+  flex: 1;
 }
 
 .wrapper.spotlight .image img {
@@ -4033,39 +4048,16 @@ background: none;
 
 .wrapper.spotlight .content {
   width: 100%;
-  -ms-flex: 2;
+  flex: 2;
 }
 
 .wrapper.spotlight:nth-child(2n - 1) .inner {
-  -moz-flex-direction: row-reverse;
-  -webkit-flex-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .wrapper.spotlight:nth-child(2n - 1) .image {
   margin: 0 0 2em 3em;
-}
-
-/* ---------- Section 2: Expression ---------- */
-.wrapper.spotlight.style2 {
-  background-image: url("images/bag2.jpg");
-  background-color: #0d0d0d;
-}
-.wrapper.spotlight.style2:before,
-.wrapper.spotlight.style2:after {
-  box-shadow: inset 0 -1px 0 0 #0d0d0d, 0 1px 0 0 #0d0d0d;
-}
-
-/* ---------- Section 3: Ascension ---------- */
-.wrapper.spotlight.style3 {
-  background-image: url("images/bag3.jpg");
-  background-color: #000000;
-}
-.wrapper.spotlight.style3:before,
-.wrapper.spotlight.style3:after {
-  box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000;
 }
 
 
