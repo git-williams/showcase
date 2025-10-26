@@ -3998,7 +3998,7 @@ background: none;
 
 .wrapper.spotlight::before,
 .wrapper.spotlight::after {
-  background-image: url('images/triangle-bg1.jpg'); /* your image */
+  background-image: url('images/bag1.jpg'); /* your image */
 }
 
 /* --------------------------------------------- */
@@ -4009,7 +4009,7 @@ background: none;
 
 .wrapper.spotlight.style2::before,
 .wrapper.spotlight.style2::after {
-  background-image: url('images/triangle-bg2.jpg'); /* your second image */
+  background-image: url('images/bag2.jpg'); /* your second image */
 }
 
 /* --------------------------------------------- */
@@ -4020,7 +4020,7 @@ background: none;
 
 .wrapper.spotlight.style3::before,
 .wrapper.spotlight.style3::after {
-  background-image: url('images/triangle-bg3.jpg'); /* your third image */
+  background-image: url('images/bag3.jpg'); /* your third image */
 }
 
 /* --------------------------------------------- */
