@@ -3965,7 +3965,7 @@ background: none;
   overflow: hidden;
 
   /* Single background image per section (placeholder) */
-  background-image: url("images/baseline-bg.jpg");
+  background-image: url("images/bag1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -4050,7 +4050,7 @@ background: none;
 
 /* ---------- Section 2: Expression ---------- */
 .wrapper.spotlight.style2 {
-  background-image: url("images/expression-bg.jpg");
+  background-image: url("images/bag2.jpg");
   background-color: #0d0d0d;
 }
 .wrapper.spotlight.style2:before,
@@ -4060,7 +4060,7 @@ background: none;
 
 /* ---------- Section 3: Ascension ---------- */
 .wrapper.spotlight.style3 {
-  background-image: url("images/ascension-bg.jpg");
+  background-image: url("images/bag3.jpg");
   background-color: #000000;
 }
 .wrapper.spotlight.style3:before,
