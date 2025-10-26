@@ -3953,111 +3953,206 @@ background: none;
 				box-shadow: inset 0 -1px 0 0 #555867, 0 1px 0 0 #555867;
 			}
 
-		/* ============================================================
-   Spotlight Sections — unified background image per section
-   (Option 2 Implementation)
-   ============================================================ */
-/* Base spotlight wrapper */
+		/* ============================
+   Spotlight — rebuilt (clip-path)
+   Images: images/bag1.jpg, bag2.jpg, bag3.jpg
+   Keeps original classes & layout
+   ============================ */
+
+/* --- Base wrapper --- */
 .wrapper.spotlight {
   position: relative;
-  background: #000; /* fallback */
   overflow: hidden;
-}
-
-/* Triangular background effect */
-.wrapper.spotlight::before,
-.wrapper.spotlight::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 50%;
+  color: #fff;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 0;
+  padding: 6rem 2rem;               /* adjust vertical spacing as needed */
+  box-sizing: border-box;
+  /* primary clip-path that gives triangular top & bottom */
+  clip-path: polygon(0 6%, 100% 0, 100% 94%, 0% 100%);
+  -webkit-clip-path: polygon(0 6%, 100% 0, 100% 94%, 0% 100%);
 }
 
-/* Top triangle */
-.wrapper.spotlight::before {
-  top: 0;
-  clip-path: polygon(0 100%, 100% 0, 100% 100%);
-}
-
-/* Bottom triangle */
-.wrapper.spotlight::after {
-  bottom: 0;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-}
-
-/* --------------------------------------------- */
-/* STYLE 1 (example: dark / main) */
-.wrapper.spotlight {
-  background-color: #000000;
-}
-
-.wrapper.spotlight::before,
-.wrapper.spotlight::after {
-  background-image: url('images/bag1.jpg'); /* your image */
-}
-
-/* --------------------------------------------- */
-/* STYLE 2 (next section, different image) */
-.wrapper.spotlight.style2 {
-  background-color: #0d0d0d;
-}
-
-.wrapper.spotlight.style2::before,
-.wrapper.spotlight.style2::after {
-  background-image: url('images/bag2.jpg'); /* your second image */
-}
-
-/* --------------------------------------------- */
-/* STYLE 3 (third section, another unique image) */
-.wrapper.spotlight.style3 {
-  background-color: #000000;
-}
-
-.wrapper.spotlight.style3::before,
-.wrapper.spotlight.style3::after {
-  background-image: url('images/bag3.jpg'); /* your third image */
-}
-
-/* --------------------------------------------- */
-/* Internal layout (unchanged from your version) */
+/* Ensure content sits above the background shape */
 .wrapper.spotlight .inner {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
   position: relative;
-  z-index: 1; /* keep content above triangles */
+  z-index: 2;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
+/* Circular image / content layout (unchanged) */
 .wrapper.spotlight .image {
   border-radius: 100%;
   margin: 0 3em 2em 0;
   width: 22em;
   overflow: hidden;
+  -ms-flex: 1;
   flex: 1;
 }
 
 .wrapper.spotlight .image img {
   border-radius: 100%;
   width: 100%;
+  display: block;
 }
 
 .wrapper.spotlight .content {
   width: 100%;
+  -ms-flex: 2;
   flex: 2;
 }
 
+/* Keep the alternating inner direction and image margin exactly as you had */
 .wrapper.spotlight:nth-child(2n - 1) .inner {
+  -moz-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .wrapper.spotlight:nth-child(2n - 1) .image {
   margin: 0 0 2em 3em;
+}
+
+/* Thin hard divider line top & bottom — keeps transitions crisp */
+.wrapper.spotlight::before,
+.wrapper.spotlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0,0,0,0.7);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* top separator (visible at very top edge of shape) */
+.wrapper.spotlight::before {
+  top: 0.5rem;
+}
+
+/* bottom separator */
+.wrapper.spotlight::after {
+  bottom: 0.5rem;
+}
+
+/* =========================
+   Section background images
+   (replace with your own)
+   ========================= */
+
+/* Style 1 (default) — Baseline */
+.wrapper.spotlight {
+  background-image: url("images/bag1.jpg");
+  background-color: #000000; /* fallback color */
+}
+
+/* Style 2 — Expression */
+.wrapper.spotlight.style2 {
+  background-image: url("images/bag2.jpg");
+  background-color: #0d0d0d;
+}
+
+/* Style 3 — Ascension */
+.wrapper.spotlight.style3 {
+  background-image: url("images/bag3.jpg");
+  background-color: #000000;
+}
+
+/* =========================
+   Alternate clip-path for odd sections if you want the
+   stacked diagonals to alternate direction.
+   (Use this if your design expects the triangles to flip)
+   ========================= */
+
+/* If you want the diagonal orientation to alternate (zig-zag),
+   uncomment the following block. It flips the top/bottom tilt
+   for odd-numbered spotlight sections. */
+
+/*
+.wrapper.spotlight:nth-of-type(odd) {
+  clip-path: polygon(0 0, 100% 6%, 100% 100%, 0% 94%);
+  -webkit-clip-path: polygon(0 0, 100% 6%, 100% 100%, 0% 94%);
+}
+*/
+
+/* =========================
+   Fallback for browsers that DO NOT support clip-path
+   (restores SVG pseudo-element triangles similar to your original
+    approach, while still using the new image backgrounds)
+   ========================= */
+
+@supports not (clip-path: polygon(0 0, 100% 0, 100% 100%)) {
+
+  /* allow the element to show the image normally */
+  .wrapper.spotlight {
+    clip-path: none;
+    -webkit-clip-path: none;
+  }
+
+  /* restore triangular caps using pseudo-elements that match the
+     section background color so the seam remains hard. We purposely
+     *do not* tile the image into the pseudo-elements to avoid
+     repeating the image three times. Instead we keep the section
+     background image and overlay colored triangle caps that match
+     the section's fallback color. */
+  .wrapper.spotlight::before,
+  .wrapper.spotlight::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .wrapper.spotlight::before {
+    top: -6rem;
+    transform: scaleY(-1);
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23000000;'/ %3E%3C/svg%3E");
+    background-color: transparent;
+  }
+  .wrapper.spotlight::after {
+    bottom: -6rem;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23000000;'/ %3E%3C/svg%3E");
+  }
+
+  /* style2 caps match fallback color #0d0d0d */
+  .wrapper.spotlight.style2::before,
+  .wrapper.spotlight.style2::after {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%230d0d0d;'/ %3E%3C/svg%3E");
+  }
+
+  /* style3 uses black like default; no change needed */
+}
+
+/* =========================
+   Small screens: tighten padding & make circular images smaller
+   ========================= */
+@media (max-width: 900px) {
+  .wrapper.spotlight {
+    padding: 3.5rem 1rem;
+    clip-path: polygon(0 8%, 100% 0, 100% 92%, 0% 100%);
+    -webkit-clip-path: polygon(0 8%, 100% 0, 100% 92%, 0% 100%);
+  }
+  .wrapper.spotlight .image { width: 12.5rem; margin: 0 2rem 1.5rem 0; }
 }
 
 
