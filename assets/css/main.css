@@ -3953,98 +3953,121 @@ background: none;
 				box-shadow: inset 0 -1px 0 0 #555867, 0 1px 0 0 #555867;
 			}
 
-		.wrapper.spotlight {
-			background-color: #000000;
-		}
+		/* ============================================================
+   Spotlight Sections — unified background image per section
+   (Option 2 Implementation)
+   ============================================================ */
 
-			.wrapper.spotlight:before, .wrapper.spotlight:after {
-				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23000000%3B' /%3E%3C/svg%3E");
-			}
+/* ---------- Shared Base Styles ---------- */
+.wrapper.spotlight {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
 
-			.wrapper.spotlight:before {
-				box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000;
-			}
+  /* Single background image per section (placeholder) */
+  background-image: url("images/baseline-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-			.wrapper.spotlight:after {
-				box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000; 
-			}
+  /* Fallback tone behind image */
+  background-color: #000000;
+}
 
-			.wrapper.spotlight .inner {
-				display: -moz-flex;
-				display: -webkit-flex;
-				display: -ms-flex;
-				display: flex;
-				-moz-align-items: center;
-				-webkit-align-items: center;
-				-ms-align-items: center;
-				align-items: center;
-				-moz-flex-direction: row;
-				-webkit-flex-direction: row;
-				-ms-flex-direction: row;
-				flex-direction: row;
-			}
+/* Transparent triangular caps (keep shape, remove fill) */
+.wrapper.spotlight:before,
+.wrapper.spotlight:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 6em;
+  background: transparent; /* no image fill */
+  z-index: 2;
+  pointer-events: none;
+}
 
-			.wrapper.spotlight .image {
-				border-radius: 100%;
-				margin: 0 3em 2em 0;
-				width: 22em;
-				overflow: hidden;
-				-ms-flex: 1;
-			}
+/* Triangles themselves still shape the section boundaries */
+.wrapper.spotlight:before {
+  top: -6em;
+  transform: scaleY(-1);
+}
+.wrapper.spotlight:after {
+  bottom: -6em;
+}
 
-				.wrapper.spotlight .image img {
-					border-radius: 100%;
-					width: 100%;
-				}
+/* Optional: crisp dark divider lines for "hard transition" */
+.wrapper.spotlight:before,
+.wrapper.spotlight:after {
+  box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000;
+}
 
-			.wrapper.spotlight .content {
-				width: 100%;
-				-ms-flex: 2;
-			}
+/* ---------- Section Layout (unchanged) ---------- */
+.wrapper.spotlight .inner {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
 
-			.wrapper.spotlight:nth-child(2n - 1) .inner {
-				-moz-flex-direction: row-reverse;
-				-webkit-flex-direction: row-reverse;
-				-ms-flex-direction: row-reverse;
-				flex-direction: row-reverse;
-				text-align: right;
-			}
+.wrapper.spotlight .image {
+  border-radius: 100%;
+  margin: 0 3em 2em 0;
+  width: 22em;
+  overflow: hidden;
+  -ms-flex: 1;
+}
 
-			.wrapper.spotlight:nth-child(2n - 1) .image {
-				margin: 0 0 2em 3em;
-			}
+.wrapper.spotlight .image img {
+  border-radius: 100%;
+  width: 100%;
+}
 
-			.wrapper.spotlight.style2 {
-				background-color: #0d0d0d;
-			}
+.wrapper.spotlight .content {
+  width: 100%;
+  -ms-flex: 2;
+}
 
-				.wrapper.spotlight.style2:before, .wrapper.spotlight.style2:after {
-					background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%230d0d0d%3B' /%3E%3C/svg%3E");
-				}
+.wrapper.spotlight:nth-child(2n - 1) .inner {
+  -moz-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  text-align: right;
+}
 
-				.wrapper.spotlight.style2:before {
-					box-shadow: inset 0 -1px 0 0 #0d0d0d, 0 1px 0 0 #0d0d0d;
-				}
+.wrapper.spotlight:nth-child(2n - 1) .image {
+  margin: 0 0 2em 3em;
+}
 
-				.wrapper.spotlight.style2:after {
-					box-shadow: inset 0 -1px 0 0 #0d0d0d, 0 1px 0 0 #0d0d0d;
-				}
+/* ---------- Section 2: Expression ---------- */
+.wrapper.spotlight.style2 {
+  background-image: url("images/expression-bg.jpg");
+  background-color: #0d0d0d;
+}
+.wrapper.spotlight.style2:before,
+.wrapper.spotlight.style2:after {
+  box-shadow: inset 0 -1px 0 0 #0d0d0d, 0 1px 0 0 #0d0d0d;
+}
 
-			.wrapper.spotlight.style3 {
-				background-color: #000000;
-			}
+/* ---------- Section 3: Ascension ---------- */
+.wrapper.spotlight.style3 {
+  background-image: url("images/ascension-bg.jpg");
+  background-color: #000000;
+}
+.wrapper.spotlight.style3:before,
+.wrapper.spotlight.style3:after {
+  box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000;
+}
 
-				.wrapper.spotlight.style3:before, .wrapper.spotlight.style3:after {
-					background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23000000%3B' /%3E%3C/svg%3E");
-				}
-
-				.wrapper.spotlight.style3:before {
-					box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000;
-				}
-
-				.wrapper.spotlight.style3:after {
-					box-shadow: inset 0 -1px 0 0 #000000, 0 1px 0 0 #000000;
-				}
 
 			.wrapper.spotlight.style4 {
 				background-color: #39477c;
