@@ -4027,50 +4027,51 @@ background: none;
   margin: 0 0 2em 3em;
 }
 
-/* Thin hard divider line top & bottom — keeps transitions crisp 
-.wrapper.spotlight::before,
-.wrapper.spotlight::after {
+
+
+/* =========================================
+   SECTION BACKGROUNDS — with full coverage
+   ========================================= */
+
+.wrapper.spotlight {
+  position: relative;
+  background: none; /* background handled by ::before now */
+}
+
+.wrapper.spotlight::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(0,0,0,0.7);
-  z-index: 3;
-  pointer-events: none;
-}*/
-
-/* top separator (visible at very top edge of shape) 
-.wrapper.spotlight::before {
-  top: 0.5rem;
-}*/
-
-/* bottom separator 
-.wrapper.spotlight::after {
-  bottom: 0.5rem;
-}*/
-
-/* =========================
-   Section background images
-   (replace with your own)
-   ========================= */
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  clip-path: polygon(0 6%, 100% 0, 100% 94%, 0% 100%);
+  -webkit-clip-path: polygon(0 6%, 100% 0, 100% 94%, 0% 100%);
+  z-index: 0;
+}
 
 /* Style 1 (default) — Baseline */
-.wrapper.spotlight {
+.wrapper.spotlight::before {
   background-image: url("images/bag1.jpg");
-  background-color: #000000; /* fallback color */
+  background-color: #000000; /* fallback */
 }
 
 /* Style 2 — Expression */
-.wrapper.spotlight.style2 {
+.wrapper.spotlight.style2::before {
   background-image: url("images/bag2.jpg");
   background-color: #0d0d0d;
 }
 
 /* Style 3 — Ascension */
-.wrapper.spotlight.style3 {
+.wrapper.spotlight.style3::before {
   background-image: url("images/bag3.jpg");
   background-color: #000000;
+}
+
+/* Ensure all content stays above background */
+.wrapper.spotlight .inner {
+  position: relative;
+  z-index: 2;
 }
 
 /* =========================
