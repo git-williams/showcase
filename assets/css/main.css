@@ -4053,19 +4053,19 @@ background: none;
 /* Style 1 (default) — Baseline */
 .wrapper.spotlight::before {
   background-image: url("images/bag1.jpg");
-  background-color: #000000; /* fallback */
+  background-color: #fff; /* fallback */
 }
 
 /* Style 2 — Expression */
 .wrapper.spotlight.style2::before {
   background-image: url("images/bag2.jpg");
-  background-color: #0d0d0d;
+  background-color: #fff;
 }
 
 /* Style 3 — Ascension */
 .wrapper.spotlight.style3::before {
   background-image: url("images/bag3.jpg");
-  background-color: #000000;
+  background-color: #fff;
 }
 
 /* Ensure all content stays above background */
