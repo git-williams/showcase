@@ -407,51 +407,269 @@ letter-spacing: 2.5;
 
 
 				<!-- Wrapper --><div id="work"></div>
-					<section id="wrapper">
-            						<!-- One -->
-							<section id="one" class="wrapper spotlight">
-								<div class="inner">
-				<a href="baseline.html" class="image abc"><img src="images/reach.jpg" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Baseline</h2>
-<p>Impactful, clear, and conversion-focused. Some websites are best made with a focus on trust and delivery with purpose. "Baseline" designs represent the foundation of business online.</p>
-                  
-										<a href="baseline.html" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
+				<!-- ============================================
+     Spotlight 2 Sections — Animated & Independent
+     ============================================ -->
 
-						<!-- Two -->
-							<section id="two" class="wrapper alt spotlight style2">
-								<div class="inner">
-									<!--<a href="elements.html" class="image abc"><img src="images/reach.jpg" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Expand Your Reach</h2>
-<p>Using semantic SEO & schema markup, every site is built to attract from outside and engage from within. Stand out in search results, draw in the right visitors, and turn reach into real results.</p>
-                  -->
+<style>
+/* =============================
+   GLOBAL STRUCTURE
+   ============================= */
+.wrapper2 {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 6rem 2rem;
+  margin-bottom: 50px;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  -webkit-clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
 
-                  <a href="elements.html" class="image abc"><img src="images/code2.jpg" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Expression</h2>
-<p>Some websites are meant to be an experience. An artistic representation of your brand. Sites designed with "Expression" put the business behind the scenes, flaunting a feeling rather than an outcome. </p>
+.wrapper2.visible2 {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-										<a href="elements.html" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
+.wrapper2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
 
-						<!-- Three -->
-							<section id="three" class="wrapper spotlight style3">
-								<div class="inner">
-									<a href="elements.html" class="image abc"><img src="images/quality.jpg" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Ascension</h2>
-<p>Sites designed with "Ascension" in mind are built to stand out. They are a fearless challenge to what would be considered ordinary. The sharp contrast it creates with others inspires loyalty and passion.</p>
-<a href="elements.html" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
-					</section>
+.inner2 {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.image2 {
+  border-radius: 100%;
+  width: 22em;
+  max-width: 320px;
+  overflow: hidden;
+  flex: 1;
+  min-width: 260px;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 1s ease;
+}
+
+.wrapper2.visible2 .image2 {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.image2 img {
+  width: 100%;
+  display: block;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.content2 {
+  flex: 2;
+  min-width: 260px;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 1s ease;
+}
+
+.wrapper2.visible2 .content2 {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content2 h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content2 p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.content2 a.special2 {
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.content2 a.special2:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Alternating layout */
+.sp_light1 .inner2 {
+  flex-direction: row;
+  text-align: left;
+}
+
+.sp_light2 .inner2 {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.sp_light3 .inner2 {
+  flex-direction: row;
+  text-align: left;
+}
+
+/* Backgrounds */
+.sp_light1::before {
+  background-image: url("images/bag1.jpg");
+}
+
+.sp_light2::before {
+  background-image: url("images/bag2.jpg");
+}
+
+.sp_light3::before {
+  background-image: url("images/bag3.jpg");
+}
+
+/* Overlay */
+.wrapper2::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* =============================
+   RESPONSIVE
+   ============================= */
+@media (max-width: 900px) {
+  .wrapper2 {
+    padding: 3.5rem 1.5rem;
+    clip-path: polygon(0 8%, 100% 0, 100% 92%, 0% 100%);
+    -webkit-clip-path: polygon(0 8%, 100% 0, 100% 92%, 0% 100%);
+  }
+
+  .inner2 {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+
+  .image2 {
+    margin-bottom: 1.5rem;
+    width: 12rem;
+    max-width: 200px;
+    transform: translateY(30px);
+  }
+
+  .content2 {
+    transform: translateY(30px);
+  }
+}
+</style>
+
+<!-- =============================
+     HTML SECTIONS
+     ============================= -->
+
+<section class="wrapper2 sp_light1">
+  <div class="inner2">
+    <a href="baseline.html" class="image2">
+      <img src="images/reach.jpg" alt="Baseline" />
+    </a>
+    <div class="content2">
+      <h2 class="major2">Baseline</h2>
+      <p>
+        Impactful, clear, and conversion-focused. Some websites are best made
+        with a focus on trust and delivery with purpose. "Baseline" designs
+        represent the foundation of business online.
+      </p>
+      <a href="baseline.html" class="special2">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrapper2 sp_light2">
+  <div class="inner2">
+    <a href="elements.html" class="image2">
+      <img src="images/code2.jpg" alt="Expression" />
+    </a>
+    <div class="content2">
+      <h2 class="major2">Expression</h2>
+      <p>
+        Some websites are meant to be an experience — an artistic representation
+        of your brand. Sites designed with "Expression" flaunt a feeling rather
+        than an outcome.
+      </p>
+      <a href="elements.html" class="special2">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrapper2 sp_light3">
+  <div class="inner2">
+    <a href="elements.html" class="image2">
+      <img src="images/quality.jpg" alt="Ascension" />
+    </a>
+    <div class="content2">
+      <h2 class="major2">Ascension</h2>
+      <p>
+        Sites designed with "Ascension" in mind are built to stand out. They are
+        a fearless challenge to what would be considered ordinary, inspiring
+        loyalty and passion.
+      </p>
+      <a href="elements.html" class="special2">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<!-- =============================
+     JS: Scroll-triggered animation
+     ============================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(".wrapper2");
+
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < triggerBottom) {
+        section.classList.add("visible2");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // initial check
+});
+</script>
+
+
+
+
+
+				
 				<!-- Features (Four) -->
 
 
@@ -1106,6 +1324,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	</body>
 </html>
+
 
 
 
