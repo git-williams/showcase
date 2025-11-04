@@ -12,7 +12,7 @@
 		<style>
 			p{
 				font-family: 'Raleway', sans-serif;
-        color: #999 !important;
+        color: #000 !important;
 
 			}
 		</style>
@@ -95,20 +95,21 @@
   display: inline-block;
   position: relative;
   font-weight: 600;
-  color: transparent; /* start transparent */
-  background: linear-gradient(
+	color: #fff;
+  /*color: transparent;  start transparent */
+  /*background: linear-gradient(
     120deg,
     rgba(255,255,255,0) 0%,
     rgba(255,255,255,0.2) 40%,
     rgba(255,255,255,1) 50%,
     rgba(255,255,255,0.2) 60%,
     rgba(255,255,255,0) 100%
-  );
+  );*/
   background-size: 200%;
   background-repeat: no-repeat;
   background-position: -150% 0;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
+  /*-webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.2);*/
   animation: 
     shineText 2s ease-in-out forwards,
     fadeInColor 1.5s ease-out 1.5s forwards;
@@ -231,7 +232,7 @@ letter-spacing: 2.5;
   margin: 0 auto;
   position: relative;
   text-align: center;
-  color: rgba(255, 255, 255)!important;
+  color: rgba(0, 0, 0)!important;
 }
 
 
@@ -262,7 +263,7 @@ letter-spacing: 2.5;
   position: absolute;
   width: 100%;
   height: 25vh;
-  background: rgba(255, 255, 255, 0.05); /* your theme color */
+  background: #f1f1f1; /* your theme color */
   z-index: 1;
   clip-path: polygon(0 0, 100% 0, 0 100%);
   opacity: 0;
@@ -1324,6 +1325,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	</body>
 </html>
+
 
 
 
